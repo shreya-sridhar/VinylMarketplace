@@ -1,19 +1,21 @@
-import React, {Component} from "react";
+import React, {Component} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppLogo from "../components/navbar/AppLogo"
 import SearchBox from "../components/navbar/SearchBox"
-import Cart from "../components/navbar/Cart";
-import LoginButton from "../components/navbar/LoginButton";
+import Cart from "../components/navbar/Cart"
+import LoginButton from "../components/navbar/LoginButton"
+import UserDropdown from "../components/navbar/UserDropdown";
 
 class NavBar extends Component {
     render() {
         return (
-            <nav className="navbar navbar-light bg-dark">
-                <div className="container-fluid">
+            <nav className="navbar bg-dark">
+                <div className="container-fluid text-light">
                     <AppLogo />
                     <SearchBox />
                     <Cart />
-                    <LoginButton />
+                    {/*<LoginButton />*/}
+                    <UserDropdown />
                 </div>
             </nav>
         )
