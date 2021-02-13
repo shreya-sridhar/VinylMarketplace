@@ -3,14 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 const SearchBox = () => {
     return (
-        <div className="navbar-brand mx-auto text-light">
+        <div className="navbar-brand mx-auto">
             <form className="d-flex">
                 <input className="form-control me-2"
                        type="search"
                        placeholder="Search"
                        aria-label="Search"></input>
-                <button className="btn btn-outline-dark" type="submit"><
-                    span role="img" aria-label="magnifying-glass"> 🔎</span>
+                <button className="btn btn-dark" type="submit">
+                    <i className="fas fa-search"></i>
                 </button>
             </form>
         </div>
