@@ -1,0 +1,12 @@
+/*Pagination*/
+.pagination .page-item .page-link {
+    color: #333;
+    border: none;
+    width: 40px;
+    text-align: center
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #fff;
+    border: 1px solid #333
+}

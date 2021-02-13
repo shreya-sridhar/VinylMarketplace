@@ -1,12 +1,16 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import GroupedRecords from "../../containers/GroupedRecords";
 
-const Main = () => {
-    return (
-        <div >
-            <h1>Hi!!!</h1>
-        </div>
-    )
+class Main extends React.Component {
+    render() {
+        return (
+            <div >
+                <GroupedRecords title={'The most popular Records'}/>
+                <GroupedRecords title={'The most expensive Records'}/>
+            </div>
+        )
+    }
 }
 
 export default Main
