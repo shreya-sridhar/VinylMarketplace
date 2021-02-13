@@ -9,6 +9,7 @@ const NotFound = () => {
             <h1>404</h1>
             <h3>not found</h3>
             <img src={logo} alt="loading..." width='150px'/>
+            <br></br> <br></br> <br></br>
         </div>
     )
 }

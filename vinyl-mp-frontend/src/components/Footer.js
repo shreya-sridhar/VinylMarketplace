@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 class Footer extends React.Component {
     render(){
         return(<footer class="footer">
+            
         <div class="container bottom_border">
         <div class="row">
         <div class=" col-sm-4 col-md col-sm-4  col-12 col">

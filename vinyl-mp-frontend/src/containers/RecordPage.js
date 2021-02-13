@@ -1,6 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import ShowSellers from '../components/ShowSellers.js'
+import Carousel from '../containers/Carousel.js'
 
 class RecordPage extends React.Component {
     render(){
@@ -58,10 +59,18 @@ class RecordPage extends React.Component {
                     <div class="m-bot15"> <strong>Price : </strong> <span class="amount-old">$544</span>  <span class="pro-price"> $300.00</span></div>
                     <div class="form-group">
                         <label>Quantity</label>
-                        <input type="quantiy" placeholder="1" class="form-control quantity"></input>
+                        <div class="container">
+  <div class="row row-cols-3">
+    <div class="col"></div>
+    <div class="col">        <input type="quantiy" placeholder="1" class="form-control quantity"></input></div>
+    <div class="col"></div>
+    </div></div>
+
+
                     </div>
                     <p>
-                        <button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>&nbsp;&nbsp;
+                        <button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Buy Now</button>
                     </p>
                 </div>
             </div>
@@ -70,70 +79,12 @@ class RecordPage extends React.Component {
         <br></br><br></br><br></br><br></br>
         </div>
         </div>
+        <Carousel />
+        <ShowSellers />
         
-        <div id="demo" class="carousel slide" data-ride="carousel">
-        <h4>You May Also Like</h4><br></br><br></br><br></br>
-  <ul class="carousel-indicators">
-    <li data-target="google.com" data-slide-to="0" class="active"></li>
-    <li data-target="google.com" data-slide-to="1"></li>
-    <li data-target="google.com" data-slide-to="2"></li>
-  </ul>
-  
-  
-  <div class="container carousel-inner no-padding">
-    <div class="carousel-item active">
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>    
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-    </div>
-    
-    <div class="carousel-item">
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>    
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>  
-    </div>
-    <div class="carousel-item">
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>    
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=" "></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=" "></img>
-      </div>  
-    </div>
-  </div>
-  
-  
-  <a class="carousel-control-prev" href="google.com" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="google.com" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a><br></br><br></br><br></br><br></br>
-</div>
+
+
+        
 </div>
           
         
