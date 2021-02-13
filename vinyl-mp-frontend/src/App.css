@@ -1,7 +1,7 @@
 .App {
     position: relative;
     text-align: center;
-    background-color: black;
+    background-color: whitesmoke;
     color: white;
 }
 
@@ -421,11 +421,21 @@ body .no-padding {
 }
 
 .footer {
-    position:absolute;
+    position:relative;
     bottom:-550px;
     width:100%;
     /* Height of the footer */
     height:550px;
 }
 
+/*Record Component*/
+.card {
+    border: none;
+    cursor: pointer
+}
+
+.card:hover {
+    transform: scale(1.08);
+    transition: all 0.4s ease-in-out
+}
 

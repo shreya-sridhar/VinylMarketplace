@@ -1,4 +1,4 @@
-import './App.css';
+import './App.css'
 import Footer from './components/Footer.js'
 import RecordPage from './containers/RecordPage.js'
 import {
@@ -7,7 +7,8 @@ import {
 } from "react-router-dom"
 import NavBar from "./containers/NavBar"
 import NotFound from "./components/NotFound"
-import Main from "./pages/main/Main";
+import Main from "./pages/main/Main"
+import Search from "./pages/search/Search";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <NavBar />
       <Switch>
           <Route exact path="/" component={Main} />
+          <Route exact path="/search" component={Search} />
           <Route component={NotFound} />
       </Switch>
       <Footer/>
