@@ -1,11 +1,12 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Card from '../components/carousel/Card.js'
 
 class Carousel extends React.Component {
     render(){
         return(
 <div id="demo" class="carousel slide" data-ride="carousel">
-        <h4>You May Also Like</h4><br></br><br></br><br></br>
+        <h4>{this.props.content}</h4><br></br>
   <ul class="carousel-indicators">
     <li data-target="google.com" data-slide-to="0" class="active"></li>
     <li data-target="google.com" data-slide-to="1"></li>
@@ -15,57 +16,13 @@ class Carousel extends React.Component {
   
   <div class="container carousel-inner no-padding">
     <div class="carousel-item active">
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>    
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-    </div>
-    
-    <div class="carousel-item">
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>    
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>  
-    </div>
-    <div class="carousel-item">
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>    
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=""></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=" "></img>
-      </div>   
-      <div class="col-xs-3 col-sm-3 col-md-3">
-        <img src="http://www.googlecover.com/_asset/_cover/John-Lennon_662.jpg"alt=" "></img>
-      </div>  
+    {this.props.records.map((rec) => <Card title={rec.name} image={rec.cover} size={this.props.size}/>).slice(this.props[`${this.props.pageTag + `Page`}`],this.props[`${this.props.pageTag + `Page`}`]+4)}
     </div>
   </div>
-
-
-  
-  
-  <a class="carousel-control-prev" href="google.com" data-slide="prev">
+  <a onClick={() => this.props.handleLeftClick(this.props.pageTag,this.props.nums)} class="carousel-control-prev" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </a>
-  <a class="carousel-control-next" href="google.com" data-slide="next">
+  <a onClick={() => this.props.handleRightClick(this.props.pageTag,this.props.nums)} class="carousel-control-next" data-slide="next">
     <span class="carousel-control-next-icon"></span>
   </a><br></br><br></br><br></br><br></br>
 </div>)

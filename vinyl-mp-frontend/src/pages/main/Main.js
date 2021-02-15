@@ -9,6 +9,7 @@ class Main extends React.Component {
                 <GroupedRecords title={'The most popular Records'}/>
                 <GroupedRecords title={'The most expensive Records'}/>
             </div>
+            
         )
     }
 }
