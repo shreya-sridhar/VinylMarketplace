@@ -12,6 +12,7 @@ import Login from "./containers/Login"
 import Cart from "./containers/Cart"
 
 import Search from "./pages/search/Search";
+import AlbumsToSell from "./containers/AlbumsToSell";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/sell" component={AlbumsToSell} />
           <Route component={NotFound} />
       </Switch>
       <Footer/>
