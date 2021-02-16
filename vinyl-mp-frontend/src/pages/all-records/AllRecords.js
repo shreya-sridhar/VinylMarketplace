@@ -13,6 +13,16 @@ class AllRecords extends React.Component {
     state = {
         records: []
     }
+    componentDidMount() {
+        let urlRequest = API + `records`
+        if (this.props.location.search !== null) {
+            urlRequest += `${this.props.location.search}`
+        }
+        fetch(urlRequest)
+            .then(resp => resp.json())
+            .then(data => this.setState({records: data}))
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         let urlRequest = API + `records`
         if (this.props.location.search !== null) {
