@@ -1932,3 +1932,7 @@ a:hover {
 .image-parent {
     max-width: 40px;
   }
+
+.record-component-name{
+    text-align: left;
+}

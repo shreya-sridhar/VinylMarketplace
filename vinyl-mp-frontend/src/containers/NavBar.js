@@ -12,7 +12,7 @@ class NavBar extends Component {
             <nav className="navbar bg-dark">
                 <div className="container-fluid text-light">
                     <AppLogo />
-                    <SearchBox />
+                    <SearchBox search={this.props.search}/>
                     <Cart />
                     {/*<LoginButton />*/}
                     <UserDropdown />

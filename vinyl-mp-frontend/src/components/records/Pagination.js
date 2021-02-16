@@ -13,9 +13,9 @@ const Pagination = () => {
                     <ul className="pagination pagination-circle justify-content-center float-md-right mb-0">
                         <li className="page-item"><a className="page-link"><i className="fas fa-chevron-left"></i></a>
                         </li>
-                        <li className="page-item active"><a className="page-link">1</a></li>
-                        <li className="page-item"><a className="page-link">2</a></li>
-                        <li className="page-item"><a className="page-link">3</a></li>
+                        {/*<li className="page-item active"><a className="page-link">1</a></li>*/}
+                        {/*<li className="page-item"><a className="page-link">2</a></li>*/}
+                        {/*<li className="page-item"><a className="page-link">3</a></li>*/}
                         <li className="page-item"><a className="page-link"><i className="fas fa-chevron-right"></i></a>
                         </li>
                     </ul>
