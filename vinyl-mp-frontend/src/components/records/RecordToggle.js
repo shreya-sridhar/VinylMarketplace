@@ -51,7 +51,7 @@ export default class RecordToggle extends React.Component {
 
                     </div>
                     <p>
-                        <button class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>&nbsp;&nbsp;
+                        <button onClick={()=> this.props.addToCart(this.props.record)} class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>&nbsp;&nbsp;
                         <button class="btn btn-round btn-danger" type="button"><i class="fas fa-eye"></i> View Sellers</button>
                     </p>
                 </div>
