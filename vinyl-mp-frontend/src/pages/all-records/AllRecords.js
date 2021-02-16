@@ -13,8 +13,7 @@ class AllRecords extends React.Component {
     state = {
         records: []
     }
-
-    componentDidMount() {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         let urlRequest = API + `records`
         if (this.props.location.search !== null) {
             urlRequest += `${this.props.location.search}`
