@@ -17,7 +17,7 @@ class Seller extends React.Component {
              <li class="list-group-item">
                  <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                      <div class="media-body order-2 order-lg-1">
-                        {this.props.users.map(user => <SellerCard user={user}/>)}
+                        {this.props.sells.map(sell => <SellerCard sell={sell} addToCart = {this.props.addToCart}/>)}
                      </div>
                  </div>
              </li>

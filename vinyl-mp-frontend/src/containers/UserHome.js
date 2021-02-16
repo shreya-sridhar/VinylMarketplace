@@ -12,7 +12,7 @@ export default class UserHome extends React.Component {
         <div class="whole1">
         <div class="container" style={{padding:100}}>
             <h4 class="t" style={{textAlign:'left',paddingLeft:20}}>
-								<span class="middle"><h2>John Doe</h2></span>
+								<span class="middle"><h2>{this.props.user.username}</h2></span>
 								<span class="label label-purple arrowed-in-right">
 									<br></br><i class="ace-icon fa fa-circle smaller-80 align-middle green"></i>&nbsp;
 									online
@@ -65,7 +65,7 @@ export default class UserHome extends React.Component {
 								<span class="bigger-110 white">Send a message</span>
 							</a>
 						</div>
-						{this.props.page === 1?<Bio/>:this.props.page === 2?<Friends/>:<Favorites/>}
+						{this.props.page === 1?<Bio user={this.props.user}/>:this.props.page === 2?<Friends user={this.props.user}/>:<Favorites user={this.props.user}/>}
 						</div>
 					<div class="space-20"></div>
 

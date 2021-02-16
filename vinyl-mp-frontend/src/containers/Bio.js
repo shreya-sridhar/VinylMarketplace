@@ -12,7 +12,7 @@ export default class Bio extends React.Component {
                                    
 
 									<div class="profile-info-value">
-										<span>Shreya Sridhar</span>
+										<span>{this.props.user.username}</span>
 									</div>
                                     <i class="fas fa-edit"></i>
 								</div>
