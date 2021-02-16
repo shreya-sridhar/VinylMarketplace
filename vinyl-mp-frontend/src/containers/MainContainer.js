@@ -13,8 +13,7 @@ import Login from "./Login"
 import Cart from "./Cart"
 import UserHome from "../containers/UserHome"
 import Friends from "./ChatFriends"
-import AllRecords from "../pages/all-records/AllRecords"
-import Search from "../pages/search/Search";
+import AllRecords from "../pages/all-records/AllRecords";
 import { Link } from 'react-router-dom'
 const API = "http://localhost:3001/"
 
@@ -71,59 +70,13 @@ getSellData () {
     {
      newPage = 2
     }
-
-    handleRightClick = (pg, n) => {
-        let changePage = pg + `Page`
-        let pageNum = this.state[changePage] + 4
-        if (pageNum >= n) {
-            pageNum = 0
-        }
-        this.setState({
-            [`${changePage}`]: pageNum
-        })
+    else if (tab === "favorites")
+    {
+      newPage = 3
     }
-
-    handleLeftClick = (pg, n) => {
-        let changePage = pg + `Page`
-        let pageNum = this.state[changePage] - 4
-        if (pageNum <= 0) {
-            pageNum = n - 4
-        }
-        this.setState({
-            [`${changePage}`]: pageNum
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                <NavBar search={this.state.search}/>
-                <Switch>
-                    <Route exact path="/record"
-                           component={() => <RecordPage record={this.state.records[0]} records={this.state.records}
-                                                        handleClick={this.handleClick} cover={this.state.cover}
-                                                        handleRightClick={this.handleRightClick}
-                                                        handleLeftClick={this.handleLeftClick} users={this.state.users}
-                                                        recordPage={this.state.recordPage}/>}/>
-                    <Route exact path="/" component={Main}/>
-                    <Route exact path="/records" component={AllRecords}/>
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/cart" component={Cart}/>
-                    <Route exact path="/user"
-                           component={() => <UserHome records={this.state.records} nums={this.state.records.length}
-                                                      content1={"Recently Bought"} content2={"Currently Selling"}
-                                                      size={200} page={this.state.page}
-                                                      handleTabClick={this.handleTabClick}
-                                                      handleRightClick={this.handleRightClick}
-                                                      handleLeftClick={this.handleLeftClick}
-                                                      user1Page={this.state.user1Page}
-                                                      user2Page={this.state.user2Page}/>}/>
-                    <Route exact path="/friends" component={Friends}/>
-                    <Route component={NotFound}/>
-                </Switch>
-                <Footer/>
-            </div>
-        );
+    else 
+    {
+      newPage = 1
     }
     this.setState({
       page: newPage
@@ -188,12 +141,13 @@ getSellData () {
   }
 
   render(){ 
+    debugger
     return (
     <div>
         <NavBar />
         <Switch>
             <Route exact path="/" component={Main} />
-            <Route exact path="/search" component={Search} />
+            <Route exact path="/records" component={AllRecords} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/cart" component={() => <Cart cart={this.state.cart}/>} />
             <Route exact path="/users" component={() => <UserHome user = {this.state.users[0]} records={this.state.records} nums={this.state.records.length} content1={"Recently Bought"} content2={"Currently Selling"} size={200} page={this.state.page} handleTabClick={this.handleTabClick} handleRightClick = {this.handleRightClick} handleLeftClick = {this.handleLeftClick} user1Page={this.state.user1Page} user2Page={this.state.user2Page} /> }/>
