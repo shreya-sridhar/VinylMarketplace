@@ -11,9 +11,3 @@ const RecordsSearchFilterTab = () => {
 }
 
 export default RecordsSearchFilterTab
-
-
-{/*<div> <span>Price: </span> <select name="price" id="price">*/}
-{/*    <option value="l2h" selected>low to high</option>*/}
-{/*    <option value="l2h">high to low</option>*/}
-{/*</select></div>*/}

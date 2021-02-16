@@ -1,20 +1,31 @@
-import React, {Component} from "react";
+import React, {Component} from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
+import {withRouter} from "react-router-dom"
+import Pagination from "../records/Pagination"
 
-const SearchBox = () => {
-    return (
-        <div className="navbar-brand mx-auto">
-            <form className="d-flex">
-                <input className="form-control me-2"
-                       type="search"
-                       placeholder="Search"
-                       aria-label="Search"></input>
-                <button className="btn btn-dark" type="submit">
-                    <i className="fas fa-search"></i>
-                </button>
-            </form>
-        </div>
-    )
+
+class SearchBox extends React.Component {
+
+    handleSearch = (e) => {
+        e.preventDefault()
+        this.props.history.push(`/records?search=${e.target.search.value}`)
+    }
+
+    render() {
+        return (
+            <div className="navbar-brand mx-auto">
+                <form className="d-flex" onSubmit={this.handleSearch}>
+                    <input className="form-control me-2"
+                           type="search"
+                           name="search"
+                           placeholder="Search"></input>
+                    <button className="btn btn-dark" type="submit">
+                        <i className="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        )
+    }
 }
 
-export default SearchBox
+export default withRouter(SearchBox)
