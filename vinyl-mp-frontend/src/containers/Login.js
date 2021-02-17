@@ -2,7 +2,17 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class Login extends React.Component {
-        
+    state = {
+        username: "",
+        password: "",
+      };
+    
+      handleChange = (e) => {
+        let { name, value } = e.target;
+        this.setState({
+          [name]: value,
+        });
+      };
 
         render(){
            return(<div class="container px-4 py-5 mx-auto">
@@ -14,9 +24,18 @@ class Login extends React.Component {
                                <div class="row justify-content-center px-3 mb-3"><h1><i class="fas fa-record-vinyl"></i></h1></div>
                                <h3 class="mb-5 text-center heading">Welcome To VinylStore</h3>
                                <h6 class="msg-info">Please login to your account</h6>
-                               <div class="form-group"> <label class="form-control-label text-muted">Username</label> <input type="text" id="email" name="email" placeholder="Phone no or email id" class="form-control"></input> </div>
-                               <div class="form-group"> <label class="form-control-label text-muted">Password</label> <input type="password" id="psw" name="psw" placeholder="Password" class="form-control"></input> </div>
-                               <div class="row justify-content-center my-3 px-3"> <button class="btn-block btn-color">Login to VinylStore</button> </div>
+                               <form onSubmit={(e) => this.props.handleLoginOrSignup(e, this.state)}>
+                               <div class="form-group"> 
+                               <label class="form-control-label text-muted">Username</label> <input type="text" id="email" name="username" value={this.state.username}
+            onChange={this.handleChange} placeholder="Enter user name" class="form-control"></input> </div>
+                               <div class="form-group"> <label class="form-control-label text-muted">Password</label> <input type="password" id="psw" name="password" placeholder="Password" value={this.state.password}
+            onChange={this.handleChange} class="form-control"></input> </div>
+                               <div class="row justify-content-center my-3 px-3">
+                                    <button class="btn-block btn-color">
+                                    Login to VinylStore</button> 
+                                   
+                                 </div>
+                                 <input type="submit" value="Submit" /></form>
                                <div class="row justify-content-center my-2"> <a href="#"><small class="text-muted">Forgot Password?</small></a> </div>
                            </div>
                        </div>
