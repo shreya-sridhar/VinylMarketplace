@@ -35,7 +35,6 @@ class AllRecords extends React.Component {
     }
 
     render() {
-        console.log(this.state.records)
         return (
             <div>
                 <Pagination/>
