@@ -8,7 +8,7 @@ class Seller extends React.Component {
  <div class="container py-5">
  <div class="row text-center text-white mb-5">
      <div class="col-lg-7 mx-auto">
-         <h1 class="display-4">List of Sellers</h1>
+         <h1 class="display-4" style={{color:"black"}}>List of Sellers</h1>
      </div>
  </div>
  <div class="row">

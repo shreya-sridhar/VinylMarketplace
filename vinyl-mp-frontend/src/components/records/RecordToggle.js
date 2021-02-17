@@ -4,22 +4,29 @@ import Carousel from '../../containers/Carousel.js'
 import Songs from './SongsList.js'
 import SongsList from './SongsList.js'
 import RecordDescription from '../../components/records/RecordDescription.js'
+import { useHistory } from "react-router-dom";
 
-export default class RecordToggle extends React.Component {
-    render(){
+
+function RecordToggle(props) {
+    
+    const history = useHistory();
+  const navigateTo = (user) => history.push(`/cart/${user.id}`);//eg.history.push('/login');
+
+    
+
        return(
         <section class="panel">
             <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
-                   <RecordDescription record = {this.props.record} cover={this.props.cover}/>
-                   <h6 onClick={() => this.props.handleClick(this.props.record)}><a href="#">{this.props.cover}</a></h6>
+                   <RecordDescription record = {props.record} cover={props.cover}/>
+                   <h6 onClick={() => props.handleClick(props.record)}><a href="#">{props.cover}</a></h6>
                 </div> 
                 <div class="col-md-6">
                   <br></br>
                     <h2 class="p">
                         <a href="google.com" class="">
-                           {this.props.record.name}
+                           {props.record.name}
                         </a>
                     </h2>
                     <div class="container">
@@ -51,7 +58,8 @@ export default class RecordToggle extends React.Component {
 
                     </div>
                     <p>
-                        <button onClick={()=> this.props.addToCart(this.props.record)} class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>&nbsp;&nbsp;
+
+                        <button onClick={()=> navigateTo(props.user)} class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> View Cart</button>&nbsp;&nbsp;
                         <button class="btn btn-round btn-danger" type="button"><i class="fas fa-eye"></i> View Sellers</button>
                     </p>
                 </div>
@@ -60,6 +68,9 @@ export default class RecordToggle extends React.Component {
         </section>
         
        )
-    }
 }
+
+export default RecordToggle;
+
+
 
