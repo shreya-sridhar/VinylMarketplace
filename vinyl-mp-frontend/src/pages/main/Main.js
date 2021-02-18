@@ -23,6 +23,7 @@ class Main extends React.Component {
 
     render() {
         return (
+            <div>
             <div className='container'>
                 <GroupedRecords key={1}
                                 title={'The most popular Records'}
@@ -30,6 +31,7 @@ class Main extends React.Component {
                 <GroupedRecords key={2}
                                 title={'The most expensive Records'}
                                 records={this.state.expensiveRecords}/>
+            </div>
             </div>
 
         )

@@ -4,6 +4,7 @@ import CartItem from '../components/CartItem.js'
 
 class Cart extends React.Component {
     render(){
+      
        return( 
         <div className="px-4 px-lg-0">
         <br></br><br></br><br></br>
@@ -22,9 +23,7 @@ class Cart extends React.Component {
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Price</div>
                         </th>
-                        <th scope="col" className="border-0 bg-light">
-                          <div className="py-2 text-uppercase">Quantity</div>
-                        </th>
+                       
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Remove</div>
                         </th>

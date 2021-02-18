@@ -25,6 +25,7 @@ componentDidMount() {
 }
 
 render() {
+
   if (Object.keys(this.state.record).length === 0) {
       return <div/>
   }

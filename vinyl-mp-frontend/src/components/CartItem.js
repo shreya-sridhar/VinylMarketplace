@@ -15,7 +15,6 @@ export default class Cart extends React.Component {
           </div>
         </th>
         <td className="border-0 align-middle"><strong>{parseInt(this.props.order_record.record.price)}</strong></td>
-        <td className="border-0 align-middle"><strong>3</strong></td>
         <td className="border-0 align-middle"><a href="#" onClick = {() => this.props.deleteRecord(this.props.order_record)} className="text-dark"><i className="fa fa-trash"></i></a></td>
       </tr>
 

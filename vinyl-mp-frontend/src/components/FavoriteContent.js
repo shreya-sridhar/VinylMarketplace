@@ -4,13 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export default class FavoriteContent extends React.Component {
         
     render(){
+        
        return(
 
 	<li>
     <a href="#" data-rel="colorbox">
-        <img alt="150x150" src="http://lorempixel.com/200/200/nature/1/"></img>
+        <img alt="150x150" src={this.props.fav[1]} width="200"></img>
         <div class="text">
-            <div class="inner">Sample Caption on Hover</div>
+            <div class="inner">{this.props.fav[0]}</div>
         </div>
     </a>
 
