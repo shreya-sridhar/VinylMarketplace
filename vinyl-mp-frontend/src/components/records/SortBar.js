@@ -7,20 +7,19 @@ class SortBar extends Component {
 
     handleSort = (e) => {
         e.preventDefault()
-        if (this.props.location.search.includes('search')) {
-            let searchStr = this.props.location.search.split('=')[1]
-            this.props.history.push(`/records?search=${searchStr}&sortby=${e.target.value}`)
-        } else {
-            this.props.history.push(`/records?sortby=${e.target.value}`)
-        }
-}
+        const search = this.props.location.search; // could be '?foo=bar'
+        const params = new URLSearchParams(search)
+        const sortby = params.get('sortby')
+        params.set('sortby', e.target.value)
+        this.props.history.push('?' + params.toString())
+    }
 
 
     render() {
         return (
-            <div className= 'container ml-auto'>
+            <div className='container ml-auto'>
                 <select className='btn-light' onChange={this.handleSort}>
-                    <option value="default">Sort Records </option>
+                    <option value="default">Sort Records</option>
                     <optgroup label="Price" value='price'>
                         <option value="priceLtoH">Low to high</option>
                         <option value="priceHtoL">High to low</option>

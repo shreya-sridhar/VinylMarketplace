@@ -8,14 +8,27 @@ import UserDropdown from "../components/navbar/UserDropdown";
 
 class NavBar extends Component {
     render() {
+        if (Object.keys(this.props.user).length === 0) {
+            return (
+                <nav className="navbar bg-dark">
+                    <div className="container-fluid text-light">
+                        <AppLogo/>
+                        <SearchBox search={this.props.search}/>
+                        <LoginButton/>
+                    </div>
+                </nav>
+            )
+        }
         return (
             <nav className="navbar bg-dark">
                 <div className="container-fluid text-light">
-                    <AppLogo />
+                    <AppLogo/>
                     <SearchBox search={this.props.search}/>
-                    <Cart />
-                    {/*<LoginButton />*/}
-                    <UserDropdown />
+                    <Cart user={this.props.user}/>
+                    <UserDropdown
+                        user={this.props.user}
+                        handleLogout={this.props.handleLogout}
+                    />
                 </div>
             </nav>
         )
