@@ -68,7 +68,7 @@ class Cart extends React.Component {
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Tax</strong><strong>$0.00</strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Total</strong>
-                      <h5 className="font-weight-bold">$400.00</h5>
+                      <h5 className="font-weight-bold">${parseInt(this.props.user.orders.find(o => o.status === 'pending').order_records.reduce((t,o)=>o.record.price+t,0)+10)}</h5>
                     </li>
                   </ul><a href="#" onClick={this.props.changeCartStatus} className="btn btn-dark rounded-pill py-2 btn-block">Proceed to checkout</a>
                 </div>

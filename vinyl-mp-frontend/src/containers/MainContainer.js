@@ -65,7 +65,6 @@ persistUser = (token) => {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      debugger
       if (data.user) {
         const { username, id } = data.user;
         this.setState({
@@ -134,11 +133,14 @@ persistUser = (token) => {
   }
 
   addToCart = (rec) => {
+    alert(rec.name + ' has been added to your cart!');
+    
     let user_find = this.state.orders.filter((order) => order.user.id === this.state.user.id  && order.status === 'pending')
-    debugger
+    
     // change to single element later
     if (user_find.length===0)
     {
+      
       fetch("http://localhost:3001/orders", {
         method: "POST",
         headers: {
@@ -148,7 +150,7 @@ persistUser = (token) => {
       })
         .then((resp) => resp.json())
         .then((data) => {
-          debugger
+          
           // let newOrders = this.state.order.concat(data)
           // this.setState({orders:newOrders})
           this.createOrderRecord(data);
@@ -156,6 +158,7 @@ persistUser = (token) => {
     }
     else
     {
+      
       this.createOrderRecord(rec);
     }
   }
@@ -242,7 +245,7 @@ persistUser = (token) => {
   changeCartStatus = () => {
     let order_find = this.state.orders.find((order) => order.user.id === this.state.user.id  && order.status === 'pending').id
     // change to single element later
-
+   
     fetch(`http://localhost:3001/orders/${order_find}`, {
       method: "PATCH",
       headers: {
@@ -255,13 +258,13 @@ persistUser = (token) => {
       console.log)
   }
 
-  deleteRecord = (rec) => {
-    fetch(`http://localhost:3001/order_records/${rec.id}`, {
+  deleteRecord = (order_rec) => {
+    debugger
+    fetch(`http://localhost:3001/order_records/${order_rec.id}`, {
       method: 'DELETE',
     })
     .then(res => res.json()) 
-    .then(res => {console.log(res)
-      })
+    .then(res => {console.log(res)})
     }
   
   render(){ 

@@ -12,8 +12,6 @@ function RecordToggle(props) {
     const history = useHistory();
   const navigateTo = (user) => history.push(`/cart/${user.id}`);//eg.history.push('/login');
 
-    
-
        return(
         <section class="panel">
             <div class="panel-body">
@@ -46,7 +44,7 @@ function RecordToggle(props) {
                         <span class="posted_in"> <strong>Genres:</strong> <a rel="tag" href="google.com">Rock</a>, <a rel="tag" href="google.com">Pop</a>, <a rel="tag" href="google.com">Country</a>, <a rel="tag" href="google.com">Pop Music</a>.</span>
                         <span class="tagged_as"><strong>Tags:</strong> <a rel="tag" href="google.com">Beatles</a>, <a rel="tag" href="google.com">Soul</a>.</span>
                     </div>
-                    <div class="m-bot15"> <strong>Starting Price : </strong> <span class="amount-old">$544</span>  <span class="pro-price"> $300.00</span></div>
+                    <div class="m-bot15"> <strong>Starting Price : </strong> <span class="amount-old">${parseInt(Math.min(props.sells.map(s => s.sell_price))+100)}</span>${parseInt(Math.min(props.sells.map(s => s.sell_price)))}<span class="pro-price"></span></div>
                     <div class="form-group">
                         <label>Quantity</label>
                         <div class="container">
