@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 const Cart = (props) => {
         return (
             <div className="navbar-brand">
-                <Link to={{pathname: '/'}}>
+                <Link to={{pathname: `/cart/${props.user.id}`}}>
                     <button type="button" className="btn btn-dark">
                         <i className="fas fa-shopping-basket"></i>
                     </button>
