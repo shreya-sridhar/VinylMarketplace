@@ -18,7 +18,7 @@ export default class SellerCard extends React.Component {
                                  <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
                                  <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
                                  &nbsp;&nbsp;&nbsp;
-                                 <button onClick = {()=>this.props.addToCart(this.props.sell.record)} class="btn btn-round btn-danger" type="button"><i class="far fa-credit-card"></i>&nbsp;Buy Now</button>
+                                 <button onClick = {()=>this.props.addToCart(this.props.sell.record)} class="btn btn-round btn-danger" type="button"><i class="far fa-credit-card"></i>&nbsp;Add To Cart</button>
                              </ul>
                          </div>
                      </div>

@@ -4,11 +4,11 @@ import CartItem from '../components/CartItem.js'
 
 class Cart extends React.Component {
     render(){
-      console.log(this.props.cart)
        return( 
         <div className="px-4 px-lg-0">
         <br></br><br></br><br></br>
         <div className="pb-5">
+          <h2>Thank you for shopping @ VinylStore {this.props.user.username}</h2>
           <div className="container">
             <div className="row">
               <div className="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">  
@@ -31,7 +31,8 @@ class Cart extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                    {this.props.cart.map(record => <CartItem record={record}/>)} 
+                    {this.props.user.orders.find(o => o.status === 'pending').order_records
+                    .map(or => <CartItem order_record={or} deleteRecord = {this.props.deleteRecord}/>)} 
                     </tbody>
                   </table>
                 </div>
@@ -62,13 +63,14 @@ class Cart extends React.Component {
                 <div className="p-4">
                   <p className="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
                   <ul className="list-unstyled mb-4">
-                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
+                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Order Subtotal </strong><strong>${parseInt(this.props.user.orders.find(o => o.status === 'pending').order_records.reduce((t,o)=>o.record.price+t,0))}
+                    </strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Tax</strong><strong>$0.00</strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Total</strong>
-                      <h5 className="font-weight-bold">$400.00</h5>
+                      <h5 className="font-weight-bold">${parseInt(this.props.user.orders.find(o => o.status === 'pending').order_records.reduce((t,o)=>o.record.price+t,0)+10)}</h5>
                     </li>
-                  </ul><a href="#" className="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+                  </ul><a href="#" onClick={this.props.changeCartStatus} className="btn btn-dark rounded-pill py-2 btn-block">Proceed to checkout</a>
                 </div>
               </div>
             </div>

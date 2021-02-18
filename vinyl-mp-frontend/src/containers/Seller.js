@@ -8,7 +8,7 @@ class Seller extends React.Component {
  <div class="container py-5">
  <div class="row text-center text-white mb-5">
      <div class="col-lg-7 mx-auto">
-         <h1 class="display-4">List of Sellers</h1>
+         <h1 class="display-4" style={{color:"black"}}>List of Sellers</h1>
      </div>
  </div>
  <div class="row">
@@ -17,7 +17,7 @@ class Seller extends React.Component {
              <li class="list-group-item">
                  <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                      <div class="media-body order-2 order-lg-1">
-                        {this.props.sells.map(sell => <SellerCard sell={sell} addToCart = {this.props.addToCart}/>)}
+                        {this.props.sells.sort((a, b) => (a.sell_price > b.sell_price) ? 1 : -1).map(sell => <SellerCard sell={sell} addToCart = {this.props.addToCart}/>)}
                      </div>
                  </div>
              </li>
@@ -28,6 +28,8 @@ class Seller extends React.Component {
  )
 }
 }
+
+
 
 export default Seller;
 

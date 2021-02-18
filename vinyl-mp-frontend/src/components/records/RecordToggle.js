@@ -4,22 +4,27 @@ import Carousel from '../../containers/Carousel.js'
 import Songs from './SongsList.js'
 import SongsList from './SongsList.js'
 import RecordDescription from '../../components/records/RecordDescription.js'
+import { useHistory } from "react-router-dom";
 
-export default class RecordToggle extends React.Component {
-    render(){
+
+function RecordToggle(props) {
+    
+    const history = useHistory();
+  const navigateTo = (user) => history.push(`/cart/${user.id}`);//eg.history.push('/login');
+
        return(
-        <section className="panel">
-            <div className="panel-body">
-            <div className="row">
-                <div className="col-md-6">
-                   <RecordDescription record = {this.props.record} cover={this.props.cover}/>
-                   {/*<h6 onClick={() => this.props.handleClick(this.props.record)}><a href="#">{this.props.cover}</a></h6>*/}
+        <section class="panel">
+            <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                   <RecordDescription record = {props.record} cover={props.cover}/>
+                   <h6 onClick={() => props.handleClick(props.record)}><a href="#">{props.cover}</a></h6>
                 </div> 
                 <div className="col-md-6">
                   <br></br>
-                    <h2 className="p">
-                        <a href="google.com" className="">
-                           {this.props.record.name}
+                    <h2 class="p">
+                        <a href="google.com" class="">
+                           {props.record.name}
                         </a>
                     </h2>
                     <div className="container">
@@ -39,8 +44,8 @@ export default class RecordToggle extends React.Component {
                         <span className="posted_in"> <strong>Genres:</strong> <a rel="tag" href="google.com">Rock</a>, <a rel="tag" href="google.com">Pop</a>, <a rel="tag" href="google.com">Country</a>, <a rel="tag" href="google.com">Pop Music</a>.</span>
                         <span className="tagged_as"><strong>Tags:</strong> <a rel="tag" href="google.com">Beatles</a>, <a rel="tag" href="google.com">Soul</a>.</span>
                     </div>
-                    <div className="m-bot15"> <strong>Starting Price : </strong> <span className="amount-old">$544</span>  <span className="pro-price"> $300.00</span></div>
-                    <div className="form-group">
+                    <div class="m-bot15"> <strong>Starting Price : </strong> <span class="amount-old">${parseInt(Math.min(props.sells.map(s => s.sell_price))+100)}</span>${parseInt(Math.min(props.sells.map(s => s.sell_price)))}<span class="pro-price"></span></div>
+                    <div class="form-group">
                         <label>Quantity</label>
                         <div className="container">
   <div className="row row-cols-3">
@@ -51,8 +56,9 @@ export default class RecordToggle extends React.Component {
 
                     </div>
                     <p>
-                        <button onClick={()=> this.props.addToCart(this.props.record)} className="btn btn-round btn-danger" type="button"><i className="fa fa-shopping-cart"></i> Add to Cart</button>&nbsp;&nbsp;
-                        <button className="btn btn-round btn-danger" type="button"><i className="fas fa-eye"></i> View Sellers</button>
+
+                        <button onClick={()=> navigateTo(props.user)} class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> View Cart</button>&nbsp;&nbsp;
+                        <button class="btn btn-round btn-danger" type="button"><i class="fas fa-eye"></i> View Sellers</button>
                     </p>
                 </div>
             </div>
@@ -60,6 +66,9 @@ export default class RecordToggle extends React.Component {
         </section>
         
        )
-    }
 }
+
+export default RecordToggle;
+
+
 

@@ -10,267 +10,316 @@ import Cart from "./Cart"
 import UserHome from "../containers/UserHome"
 import Friends from "./ChatFriends"
 import AllRecords from "../pages/all-records/AllRecords";
-import {Route, Switch, withRouter, Redirect, Link} from "react-router-dom";
-
+import { Route, Switch, Redirect,Link} from "react-router-dom";
+import {withRouter} from 'react-router'
 const API = "http://localhost:3001/"
 
 class MainContainer extends React.Component {
 
-    state = {
-        records: [],
-        users: [],
-        sell_records: [],
-        cover: true,
-        page: 1,
-        recordPage: 0,
-        user1Page: 0,
-        user2Page: 0,
-        cart: [],
-        user: {},
-        error: false
+  state = {
+    records:[],
+    users:[],
+    sell_records:[],
+    cover:true,
+    page:1,
+    recordPage:0,
+    user1Page:0,
+    user2Page:0,
+    user: {},
+    error: false,
+    orders:[]
+  }
+
+  componentDidMount() {
+    const token = localStorage.token;
+    if (token) {
+      this.persistUser(token);
     }
 
-    componentDidMount() {
-        const token = localStorage.token;
-        if (token) {
-            this.persistUser(token);
-        }
-        fetch("http://localhost:3001/users")
-            .then(res => res.json())
-            .then(data1 => {
-                fetch("http://localhost:3001/records")
-                .then(res => res.json())
-                .then(data2 => fetch("http://localhost:3001/sell_records")
-                    .then(res => res.json())
-                    .then(data3 => {
-                            this.setState(
-                                {
-                                    sell_records: data3,
-                                    records: data2,
-                                    users: data1
-                                })
+    fetch("http://localhost:3001/users")
+    .then(res => res.json())
+    .then(data1 => fetch("http://localhost:3001/records")
+    .then(res => res.json())
+    .then(data2 => fetch("http://localhost:3001/sell_records")
+    .then(res => res.json())
+    .then(data3 => fetch("http://localhost:3001/orders")
+    .then(res => res.json())
+    .then(data4 => {this.setState(
+      {sell_records:data3,
+      records:data2,
+    users:data1,
+    orders:data4
+      })
+      }
+      ))))
+}
 
-                        }
-                    ))})
-    }
-
-
-    persistUser = (token) => {
-        fetch(API + "/persist", {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        })
-            .then((resp) => resp.json())
-            .then((data) => {
-                if (data.username) {
-                    const {username, id} = data;
-                    this.setState({
-                        user: {
-                            username,
-                            id,
-                        },
-                    });
-                }
-            });
-    };
-
-
-
-    handleTabClick = (tab) => {
-        let newPage
-        if (tab === "friends") {
-            newPage = 2
-        } else if (tab === "favorites") {
-            newPage = 3
-        } else {
-            newPage = 1
-        }
+persistUser = (token) => {
+  
+  fetch(API +  `profile`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      if (data.user) {
+        const { username, id } = data.user;
         this.setState({
-            page: newPage
-        })
-    }
-
-    handleClick = () => {
-        let newCover = !this.state.cover[0]
-        let newTitle
-        if (this.state.cover[1] === "View Album Cover") {
-            newTitle = "View List Of Songs"
-        } else {
-            newTitle = "View Album Cover"
-        }
-        this.setState({
-            cover: [newCover, newTitle]
-        })
-    }
-
-    handleRightClick = (pg, n) => {
-        let changePage = pg + `Page`
-        let pageNum = this.state[changePage] + 4
-        if (pageNum >= n) {
-            pageNum = 0
-        }
-        this.setState({
-            [`${changePage}`]: pageNum
-        })
-    }
-
-    handleLeftClick = (pg, n) => {
-        let changePage = pg + `Page`
-        let pageNum = this.state[changePage] - 4
-        if (pageNum <= 0) {
-            pageNum = n - 4
-        }
-        this.setState({
-            [`${changePage}`]: pageNum
-        })
-    }
-
-    addToCart = (rec) => {
-        let newCart = this.state.cart.concat(rec)
-        this.setState({
-            cart: newCart
-        })
-
-        // fetch("http://localhost:3001/sell_records", {
-        //   method: 'POST', // or 'PUT'
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify(rec),
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //   console.log(data);
-        // })
-    }
-
-    handleAuthResponse = (data) => {
-        if (data.username) {
-            const {username, id, token} = data;
-
-            this.setState({
-                user: {
-                    username,
-                    id,
-                },
-                error: null,
-            });
-
-            localStorage.setItem("token", token);
-            this.props.history.push("/paintings");
-        } else if (data.error) {
-            this.setState({
-                error: data.error,
-            });
-        }
-    };
-
-    handleLogin = (e, user) => {
-        e.preventDefault();
-
-        fetch(API + "/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({user: user}),
-        })
-            .then((resp) => resp.json())
-            .then((data) => this.handleAuthResponse(data))
-            .catch(console.log);
-    };
-
-    handleSignup = (e, user) => {
-        e.preventDefault();
-
-        fetch(API + "/sign_up", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({user: user}),
-        })
-            .then((resp) => resp.json())
-            .then((data) => {
-                this.handleAuthResponse(data);
-            })
-            .catch(console.log);
-    };
-
-    handleLogout = () => {
-        localStorage.clear();
-        this.setState({user: {}});
-    };
-
-    renderLoginPage = () => <Login handleLoginOrSignup={this.handleLogin}/>;
-    renderSignUpPage = () => <Login handleLoginOrSignup={this.handleSignup}/>;
-
-    render() {
-        return (
-            <div>
-                <NavBar/>
-                <Switch>
-                    <Route exact path="/" component={Main}/>
-                    <Route exact path="/records" component={AllRecords}/>
-                    {/* <Route exact path="/login" component={Login} /> */}
-
-                    <Route path="/login" render={this.renderLoginPage}/>
-                    <Route path="/signup" render={this.renderSignUpPage}/>
-                    {/* <Nav user={user} handleLogout={this.handleLogout} /> */}
+          user: {
+            username,
+            id,
+          },
+        });
+      }
+    });
+};
 
 
-                    <Route exact path="/users"
-                           component={() => <UserHome user={this.state.users[0]} records={this.state.records}
-                                                      nums={this.state.records.length} content1={"Recently Bought"}
-                                                      content2={"Currently Selling"} size={200} page={this.state.page}
-                                                      handleTabClick={this.handleTabClick}
-                                                      handleRightClick={this.handleRightClick}
-                                                      handleLeftClick={this.handleLeftClick}
-                                                      user1Page={this.state.user1Page}
-                                                      user2Page={this.state.user2Page}/>}/>
+handleTabClick = (tab) => {
+  let newPage
+  if (tab === "friends") {
+      newPage = 2
+  } else if (tab === "favorites") {
+      newPage = 3
+  } else {
+      newPage = 1
+  }
+  this.setState({
+      page: newPage
+  })
+}
 
 
-                    <Route path="/users/:slug" render={(routerProps) => {
-                        let user = this.state.users.find(user => user.id == routerProps.match.params.slug)
-                        return user ?
-                            <UserHome user={user} records={this.state.records} nums={this.state.records.length}
-                                      content1={"Recently Bought"} content2={"Currently Selling"} size={200}
-                                      page={this.state.page} handleTabClick={this.handleTabClick}
-                                      handleRightClick={this.handleRightClick} handleLeftClick={this.handleLeftClick}
-                                      user1Page={this.state.user1Page} user2Page={this.state.user2Page}/> : null
-                    }}
-                    />
+handleClick = () => {
+  let newCover = !this.state.cover[0]
+  let newTitle
+  if (this.state.cover[1]==="View Album Cover")
+  {
+   newTitle = "View List Of Songs"
+  }
+  else
+  {
+   newTitle = "View Album Cover"
+  }
+  this.setState({
+    cover:[newCover,newTitle]
+  })
+ }
 
-                    <Route path="/records/:slug" render={(routerProps) => {
+ handleRightClick = (pg,n) => {
+   let changePage = pg + `Page`
+   let pageNum = this.state[changePage] + 4
+   if (pageNum >= n)
+     {pageNum = 0}
+   this.setState({
+     [`${changePage}`]: pageNum
+   })
+ }
+
+ handleLeftClick = (pg,n) => {
+   let changePage = pg + `Page`
+   let pageNum = this.state[changePage] - 4
+   if (pageNum <= 0)
+     {pageNum = n-4}
+   this.setState({
+     [`${changePage}`]: pageNum
+   })
+ }
+
+ addToCart = (rec) => {
+   alert(rec.name + ' has been added to your cart!');
+   
+   let user_find = this.state.orders.filter((order) => order.user.id === this.state.user.id  && order.status === 'pending')
+   
+   // change to single element later
+   if (user_find.length===0)
+   {
+     
+     fetch("http://localhost:3001/orders", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({user_id:this.state.user.id,status:'pending',total_sum:0.0}),
+     })
+       .then((resp) => resp.json())
+       .then((data) => {
+         
+         // let newOrders = this.state.order.concat(data)
+         // this.setState({orders:newOrders})
+         this.createOrderRecord(data);
+       })
+   }
+   else
+   {
+     
+     this.createOrderRecord(rec);
+   }
+ }
+
+ createOrderRecord = (rec) => {
+   let currOrder = this.state.orders.filter((order) => order.user.id === this.state.user.id  && order.status === 'pending')[0]
+   // change to single element later
+   fetch("http://localhost:3001/order_records", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({order_id:currOrder.id, record_id:rec.id}),
+     })
+       .then((resp) => resp.json())
+       .then((data) => {
+         console.log(data)
+       })
+ }
+
+
+ handleAuthResponse = (data) => {
+   if (data.user) {
+     const { username, id} = data.user;
+     const token = data.jwt
+     this.setState({
+       user: {
+         username,
+         id,
+       },
+       error: null,
+     });
+
+     localStorage.setItem("token", token);
+     this.props.history.push("/records");
+   } else if (data.error) {
+     this.setState({
+       error: data.error,
+     });
+   }
+ };
+
+ handleLogin = (e, user) => {
+   e.preventDefault();
+   fetch(API + `login`, {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify({username:user.username,password:user.password,bio:""}),
+   })
+     .then((resp) => resp.json())
+     .then((data) => {
+       this.handleAuthResponse(data);
+     })
+     .catch(console.log);
+ };
+
+ handleSignup = (e, user) => {
+   e.preventDefault();
+
+   fetch(API + `/signup`, {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify({ user: user }),
+   })
+     .then((resp) => resp.json())
+     .then((data) => {
+       this.handleAuthResponse(data);
+     })
+     .catch(console.log);
+ };
+
+ handleLogout = () => {
+   localStorage.clear();
+   this.setState({ user: {} });
+ };
+
+ renderLoginPage = () => <Login handleLoginOrSignup={this.handleLogin} act="login" />;
+ renderSignUpPage = () => <Login handleLoginOrSignup={this.handleSignup} act="signup"/>;
+
+ changeCartStatus = () => {
+   let order_find = this.state.orders.find((order) => order.user.id === this.state.user.id  && order.status === 'pending').id
+   // change to single element later
+  
+   fetch(`http://localhost:3001/orders/${order_find}`, {
+     method: "PATCH",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify({status:"complete"}),
+   })
+     .then((resp) => resp.json())
+     .then((data) => 
+     console.log)
+ }
+
+ deleteRecord = (order_rec) => {
+   debugger
+   fetch(`http://localhost:3001/order_records/${order_rec.id}`, {
+     method: 'DELETE',
+   })
+   .then(res => res.json()) 
+   .then(res => {console.log(res)})
+   }
+
+
+   render(){ 
+    return (
+    <div>
+        <NavBar />
+        <Switch>
+            <Route exact path="/" component={Main} />
+            <Route exact path="/records" component = {AllRecords} />
+            {/* <Route exact path="/login" component={Login} /> */}
+
+            <Route path="/login" render={this.renderLoginPage} />
+            <Route path="/signup" render={this.renderSignUpPage} />
+
+            {/* <Nav user={user} handleLogout={this.handleLogout} /> */}
+          
+            <Route exact path="/users" component={() => <UserHome user = {this.state.user} records={this.state.records} nums={this.state.records.length} content1={"Recently Bought"} content2={"Currently Selling"} size={200} page={this.state.page} handleTabClick={this.handleTabClick} handleRightClick = {this.handleRightClick} handleLeftClick = {this.handleLeftClick} user1Page={this.state.user1Page} user2Page={this.state.user2Page} /> }/>
+
+
+            <Route path="/users/:slug" render={(routerProps) =>{
+            let user = this.state.users.find(user => user.id == routerProps.match.params.slug)
+            return user? <UserHome user={user} records={this.state.records} nums={this.state.records.length} content1={"Recently Bought"} content2={"Currently Selling"} size={200} page={this.state.page} handleTabClick={this.handleTabClick} handleRightClick = {this.handleRightClick} handleLeftClick = {this.handleLeftClick} user1Page={this.state.user1Page} user2Page={this.state.user2Page} /> :null
+          }}
+          />
+
+          
+            
+            
+            <Route path="/records/:slug" render={(routerProps) => {
                         return <RecordPage record_id={routerProps.match.params.slug} records={this.state.records}
                                            handleClick={this.handleClick}
                                            cover={this.state.cover} handleRightClick={this.handleRightClick}
-                                           handleLeftClick={this.handleLeftClick} sell_records={this.state.sell_records}
+                                           handleLeftClick={this.handleLeftClick} sell_records={this.state.sell_records} user={this.state.user} deleteRecord={this.deleteRecord} changeCartStatus={this.changeCartStatus}
                                            addToCart={this.addToCart} recordPage={this.state.recordPage}/>
-                    }}/>
+                    }}/>  
 
-                    {!this.state.user.id && <Redirect to="/login"/>}
-                    <Route exact path="/cart" component={() => <Cart cart={this.state.cart}/>}/>
-                    <Route exact path="/friends" component={Friends}/>
 
-                    <Route component={NotFound}/>
+            
 
-                </Switch>
-                <Footer/>
-            </div>
-        );
-    }
+
+
+            {/* {!this.state.user.id && <Redirect to="/login" />} */}
+
+            <Route path="/cart/:slug" render={(routerProps) =>{
+            let user = this.state.users.find(u => u.id == routerProps.match.params.slug)
+            return user? <Cart user={user} deleteRecord={this.deleteRecord} changeCartStatus={this.changeCartStatus} />:null}}/>
+            
+            <Route exact path="/friends" component={Friends}/>
+            <Route component={NotFound} />
+            
+        </Switch>
+        <Footer/>
+    </div>
+  );}
+
 }
 
-export default MainContainer
+export default withRouter(MainContainer);
 
-
-
-
-
-
-
-
+    
 
