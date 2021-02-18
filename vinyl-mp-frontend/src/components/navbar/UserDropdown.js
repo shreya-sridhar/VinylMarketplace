@@ -14,6 +14,7 @@ const UserDropdown = () => {
             <Dropdown.Item href="#/action-1">Orders</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Sell Record</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Favorite</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Log Out</Dropdown.Item>
         </Dropdown.Menu>
     </Dropdown>
     )

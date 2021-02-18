@@ -7,7 +7,7 @@ export default class RecordDescription extends React.Component {
     render(){
      return(
     <div>
-        {!this.props.cover[0]? <div class="pro-img-details"><img src={this.props.record.cover} alt=""></img></div>:<SongsList songs_list={this.props.record["songs_list"]}/>} 
+            <div className="pro-img-details"><img src={this.props.record.cover} alt={this.props.record.name}></img></div>
     </div> 
      )}
 }

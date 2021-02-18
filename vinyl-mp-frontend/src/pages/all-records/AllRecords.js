@@ -6,7 +6,7 @@ import Pagination from "../../components/records/Pagination"
 import FilersTab from "../../components/records/FilersTab"
 import SortBar from "../../components/records/SortBar"
 
-const API = "http://localhost:3001/"
+const API = "http://localhost:3001"
 
 
 class AllRecords extends React.Component {
@@ -15,7 +15,7 @@ class AllRecords extends React.Component {
     }
 
     componentDidMount() {
-        let urlRequest = API + `records`
+        let urlRequest = API + `/records`
         if (this.props.location.search !== null) {
             urlRequest += `${this.props.location.search}`
         }
@@ -25,7 +25,11 @@ class AllRecords extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        let urlRequest = API + `records`
+        if (prevProps.location.search === this.props.location.search) {
+            return
+        }
+
+        let urlRequest = API + `/records`
         if (this.props.location.search !== null) {
             urlRequest += `${this.props.location.search}`
         }

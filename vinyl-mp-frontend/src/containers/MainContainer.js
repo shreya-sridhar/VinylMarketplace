@@ -35,15 +35,10 @@ class MainContainer extends React.Component {
         if (token) {
             this.persistUser(token);
         }
-
-        // let urlRequest = API + `records`
-        //     if (this.props.location.search !== null) {
-        //         urlRequest += `${this.props.location.search}`
-        //     }
-        // this.getUsersData()
         fetch("http://localhost:3001/users")
             .then(res => res.json())
-            .then(data1 => fetch("http://localhost:3001/records")
+            .then(data1 => {
+                fetch("http://localhost:3001/records")
                 .then(res => res.json())
                 .then(data2 => fetch("http://localhost:3001/sell_records")
                     .then(res => res.json())
@@ -56,20 +51,8 @@ class MainContainer extends React.Component {
                                 })
 
                         }
-                    )))
+                    ))})
     }
-
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     let urlRequest = API + `records`
-    //     if (this.props.location.search !== null) {
-    //         urlRequest += `${this.props.location.search}`
-    //     }
-    //     fetch(urlRequest)
-    //         .then(resp => resp.json())
-    //         .then(data => this.setState({records: data}))
-    // }
-
-
 
 
     persistUser = (token) => {
@@ -261,12 +244,11 @@ class MainContainer extends React.Component {
                     />
 
                     <Route path="/records/:slug" render={(routerProps) => {
-                        let record = this.state.records.find(record => record.id == routerProps.match.params.slug)
-                        return record ?
-                            <RecordPage record={record} records={this.state.records} handleClick={this.handleClick}
-                                        cover={this.state.cover} handleRightClick={this.handleRightClick}
-                                        handleLeftClick={this.handleLeftClick} sell_records={this.state.sell_records}
-                                        addToCart={this.addToCart} recordPage={this.state.recordPage}/> : <NotFound/>
+                        return <RecordPage record_id={routerProps.match.params.slug} records={this.state.records}
+                                           handleClick={this.handleClick}
+                                           cover={this.state.cover} handleRightClick={this.handleRightClick}
+                                           handleLeftClick={this.handleLeftClick} sell_records={this.state.sell_records}
+                                           addToCart={this.addToCart} recordPage={this.state.recordPage}/>
                     }}/>
 
                     {!this.state.user.id && <Redirect to="/login"/>}
