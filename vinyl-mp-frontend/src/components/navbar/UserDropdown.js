@@ -1,20 +1,20 @@
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Dropdown} from "react-bootstrap";
+import {Dropdown} from "react-bootstrap"
+import {Link} from "react-router-dom"
 
-const UserDropdown = () => {
+const UserDropdown = (props) => {
     return (
 
     <Dropdown>
         <Dropdown.Toggle variant="dark" id="dropdown-basic">
-            User name goes here
+            Hi, {props.user.username}
         </Dropdown.Toggle>
-
         <Dropdown.Menu>
             <Dropdown.Item href="#/action-1">Orders</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Sell Record</Dropdown.Item>
+            <Dropdown.Item href="/friends">Friends</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Favorite</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Log Out</Dropdown.Item>
+            <Dropdown.Item href="/" onClick={props.handleLogout}>Log Out</Dropdown.Item>
         </Dropdown.Menu>
     </Dropdown>
     )
