@@ -8,22 +8,22 @@ import RecordDescription from '../../components/records/RecordDescription.js'
 export default class RecordToggle extends React.Component {
     render(){
        return(
-        <section class="panel">
-            <div class="panel-body">
-            <div class="row">
-                <div class="col-md-6">
+        <section className="panel">
+            <div className="panel-body">
+            <div className="row">
+                <div className="col-md-6">
                    <RecordDescription record = {this.props.record} cover={this.props.cover}/>
-                   <h6 onClick={() => this.props.handleClick(this.props.record)}><a href="#">{this.props.cover}</a></h6>
+                   {/*<h6 onClick={() => this.props.handleClick(this.props.record)}><a href="#">{this.props.cover}</a></h6>*/}
                 </div> 
-                <div class="col-md-6">
+                <div className="col-md-6">
                   <br></br>
-                    <h2 class="p">
-                        <a href="google.com" class="">
+                    <h2 className="p">
+                        <a href="google.com" className="">
                            {this.props.record.name}
                         </a>
                     </h2>
-                    <div class="container">
-                            <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                    <div className="container">
+                            <div className="starrating risingstar d-flex justify-content-center flex-row-reverse">
                                 <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
                                 <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
                                 <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
@@ -35,24 +35,24 @@ export default class RecordToggle extends React.Component {
                     <p>
                         Praesent ac condimentum felis. Nulla at nisl orci, at dignissim dolor, The best product descriptions address your ideal buyer directly and personally. The best product descriptions address your ideal buyer directly and personally.
                     </p>
-                    <div class="product_meta">
-                        <span class="posted_in"> <strong>Genres:</strong> <a rel="tag" href="google.com">Rock</a>, <a rel="tag" href="google.com">Pop</a>, <a rel="tag" href="google.com">Country</a>, <a rel="tag" href="google.com">Pop Music</a>.</span>
-                        <span class="tagged_as"><strong>Tags:</strong> <a rel="tag" href="google.com">Beatles</a>, <a rel="tag" href="google.com">Soul</a>.</span>
+                    <div className="product_meta">
+                        <span className="posted_in"> <strong>Genres:</strong> <a rel="tag" href="google.com">Rock</a>, <a rel="tag" href="google.com">Pop</a>, <a rel="tag" href="google.com">Country</a>, <a rel="tag" href="google.com">Pop Music</a>.</span>
+                        <span className="tagged_as"><strong>Tags:</strong> <a rel="tag" href="google.com">Beatles</a>, <a rel="tag" href="google.com">Soul</a>.</span>
                     </div>
-                    <div class="m-bot15"> <strong>Starting Price : </strong> <span class="amount-old">$544</span>  <span class="pro-price"> $300.00</span></div>
-                    <div class="form-group">
+                    <div className="m-bot15"> <strong>Starting Price : </strong> <span className="amount-old">$544</span>  <span className="pro-price"> $300.00</span></div>
+                    <div className="form-group">
                         <label>Quantity</label>
-                        <div class="container">
-  <div class="row row-cols-3">
-    <div class="col"></div>
-    <div class="col">        <input type="quantiy" placeholder="1" class="form-control quantity"></input></div>
-    <div class="col"></div>
+                        <div className="container">
+  <div className="row row-cols-3">
+    <div className="col"></div>
+    <div className="col">        <input type="quantiy" placeholder="1" className="form-control quantity"></input></div>
+    <div className="col"></div>
     </div></div>
 
                     </div>
                     <p>
-                        <button onClick={()=> this.props.addToCart(this.props.record)} class="btn btn-round btn-danger" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>&nbsp;&nbsp;
-                        <button class="btn btn-round btn-danger" type="button"><i class="fas fa-eye"></i> View Sellers</button>
+                        <button onClick={()=> this.props.addToCart(this.props.record)} className="btn btn-round btn-danger" type="button"><i className="fa fa-shopping-cart"></i> Add to Cart</button>&nbsp;&nbsp;
+                        <button className="btn btn-round btn-danger" type="button"><i className="fas fa-eye"></i> View Sellers</button>
                     </p>
                 </div>
             </div>

@@ -3,11 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import RecordComponent from "../components/records/RecordComponent";
 
 const GroupedRecords = props => {
-    console.log(props)
     if (props.records.length === 0) {
         return (<div/>)
     }
-
     return (
         <div className="container mt-3">
             <h3 className="font-weight-light text-center text-dark text-lg-left mt-4 mb-0"
