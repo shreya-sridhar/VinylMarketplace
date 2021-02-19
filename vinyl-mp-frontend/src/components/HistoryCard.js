@@ -16,9 +16,9 @@ export default class HistoryCard extends React.Component {
                         {this.props.order_record.record.name}
                     </Link>
                 </td>
-                <td>fill seller</td>
-                <td>fill date</td>
-                <td>$ {parseInt(this.props.order_record.sell_price)}</td>
+                {/*<td>fill seller</td>*/}
+                {/*<td>fill date</td>*/}
+                <td>$ {this.props.order_record.record.price === null ? 0 : parseInt(this.props.order_record.record.price)}</td>
             </tr>
         )
     }

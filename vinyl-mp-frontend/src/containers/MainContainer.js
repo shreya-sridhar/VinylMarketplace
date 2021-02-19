@@ -34,34 +34,38 @@ class MainContainer extends React.Component {
     redirect:false
   }
 
-  componentDidMount() {
-    const token = localStorage.token;
-    if (token) {
-      this.persistUser(token);
+    downloadUsers = () =>  {
+        fetch("http://localhost:3001/users")
+            .then(res => res.json())
+            .then(data1 => fetch("http://localhost:3001/records")
+                .then(res => res.json())
+                .then(data2 => fetch("http://localhost:3001/sell_records")
+                    .then(res => res.json())
+                    .then(data3 => fetch("http://localhost:3001/order_records")
+                        .then(res => res.json())
+                        .then(data4 => fetch("http://localhost:3001/orders")
+                            .then(res => res.json())
+                            .then(data5 => {
+                                    this.setState(
+                                        {
+                                            users: data1,
+                                            records: data2,
+                                            sell_records: data3,
+                                            order_records: data4,
+                                            orders: data5
+                                        })
+                                }
+                            )
+                        ))))
     }
 
-    fetch("http://localhost:3001/users")
-    .then(res => res.json())
-    .then(data1 => fetch("http://localhost:3001/records")
-    .then(res => res.json())
-    .then(data2 => fetch("http://localhost:3001/sell_records")
-    .then(res => res.json())
-    .then(data3 => fetch("http://localhost:3001/order_records")
-    .then(res => res.json())
-    .then(data4 => fetch("http://localhost:3001/orders")
-    .then(res => res.json())
-    .then(data5 => {
-      this.setState(
-        {
-        users:data1,
-        records:data2,
-        sell_records:data3,
-        order_records:data4,
-        orders:data5
-      })
-      }
-      )
-      ))))
+    componentDidMount() {
+        const token = localStorage.token;
+        if (token) {
+            this.persistUser(token);
+        }
+
+        this.downloadUsers()
     }
 
 persistUser = (token) => {
@@ -148,49 +152,43 @@ renderRedirect = () => {
   }
 }
 
- addToCart = (rec) => {
-   debugger
-  if (!localStorage.token)
-  {
-    debugger
-   alert('Please login before adding to cart');
-  }
-else
-{
-  debugger
-   alert(rec.name + ' has been added to your cart!');
-   let user_find = this.state.orders.filter((order) => order.user.id === this.state.user.id  && order.status === 'pending')
-   // change to single element later
-   if (user_find.length === 0)
-   {
+    addToCart = (rec) => {
+        if (!localStorage.token) {
+            alert('Please login before adding to cart');
+        } else {
+            alert(rec.name + ' has been added to your cart!');
+            let user_find = this.state.orders.filter((order) => order.user.id === this.state.user.id && order.status === 'in_cart')
+            // change to single element later
+            if (user_find === undefined) {
 
-     fetch("http://localhost:3001/orders", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify({user_id:this.state.user.id,status:'pending',total_sum:0.0}),
-     })
-       .then((resp) => resp.json())
-       .then((data) => {
+                fetch("http://localhost:3001/orders", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({user_id: this.state.user.id, status: 'in_cart', total_sum: 0.0}),
+                })
+                    .then((resp) => resp.json())
+                    .then((data) => {
 
-         // let newOrders = this.state.order.concat(data)
-         // this.setState({orders:newOrders})
-         this.createOrderRecord(data);
-       })
-   }
-   else
-   {
-
-     this.createOrderRecord(rec);
-   }}
- }
+                        // let newOrders = this.state.order.concat(data)
+                        // this.setState({orders:newOrders})
+                        this.createOrderRecord(data);
+                    })
+            } else {
+                this.createOrderRecord(rec);
+            }
+        }
+    }
 
 
     createOrderRecord = (rec) => {
-      debugger
-        let currOrder = this.state.orders.filter((order) => order.user.id === this.state.user.id && order.status === 'pending')[0]
+        let currOrder = this.state.orders.filter((order) => order.user.id === this.state.user.id && order.status === 'in_cart')[0]
+
         // change to single element later
+        console.log('createOrderRecord')
+        console.log(currOrder)
+        console.log(rec)
         fetch("http://localhost:3001/order_records", {
             method: "POST",
             headers: {
@@ -200,37 +198,35 @@ else
         })
             .then((resp) => resp.json())
             .then((data) => {
-                console.log(data)
+                this.downloadUsers()
             })
     }
 
 
- handleAuthResponse = (data) => {
-   if (data.message === "Invalid username or password")
-   {
-    this.props.history.push("/signup");
-   }
-   else
-   {
-   if (data.user) {
-     const { username, id} = data.user;
-     const token = data.jwt
-     this.setState({
-       user: {
-         username,
-         id,
-       },
-       error: null,
-     });
+    handleAuthResponse = (data) => {
+        if (data.message === "Invalid username or password") {
+            this.props.history.push("/signup");
+        } else {
+            if (data.user) {
+                const {username, id} = data.user;
+                const token = data.jwt
+                this.setState({
+                    user: {
+                        username,
+                        id,
+                    },
+                    error: null,
+                });
 
-     localStorage.setItem("token", token);
-     this.props.history.push("/records");
-   } else if (data.error) {
-     this.setState({
-       error: data.error,
-     });
-   }}
- };
+                localStorage.setItem("token", token);
+                this.props.history.push("/records");
+            } else if (data.error) {
+                this.setState({
+                    error: data.error,
+                });
+            }
+        }
+    };
 
  handleLogin = (e, user) => {
    e.preventDefault();
@@ -293,7 +289,7 @@ else
  renderHistory = () => <History order_records={this.state.order_records}/>
 
  changeCartStatus = () => {
-   let order_find = this.state.orders.find((order) => order.user.id === this.state.user.id  && order.status === 'pending').id
+   let order_find = this.state.orders.find((order) => order.user.id === this.state.user.id  && order.status === 'in_cart').id
    // change to single element later
   
    fetch(`http://localhost:3001/orders/${order_find}`, {
@@ -308,13 +304,16 @@ else
      console.log)
  }
 
- deleteRecord = (order_rec) => {
-   fetch(`http://localhost:3001/order_records/${order_rec.id}`, {
-     method: 'DELETE',
-   })
-   .then(res => res.json()) 
-   .then(res => {console.log(res)})
-   }
+    deleteRecord = (order_rec) => {
+
+        fetch(`http://localhost:3001/order_records/${order_rec.id}`, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(res => {
+                this.downloadUsers()
+            })
+    }
 
 
    render(){ 
@@ -330,7 +329,7 @@ else
 
             <Route path="/login" render={this.renderLoginPage} />
             <Route path="/signup" render={this.renderSignUpPage} />
-            {/*<Route path="/history" render={this.renderHistory} />*/}
+            <Route path="/history" render={this.renderHistory} />
 
             <Route path="/users/:slug" render={(routerProps) =>{
             let user = this.state.users.find(user => user.id == routerProps.match.params.slug)
@@ -351,7 +350,6 @@ else
             {/* {!this.state.user.id && <Redirect to="/login" />} */}
 
             <Route path="/cart/:slug" render={(routerProps) =>{
-              debugger
             let user = this.state.users.find(u => u.id == routerProps.match.params.slug)
             return user? <Cart user={user} deleteRecord={this.deleteRecord} changeCartStatus={this.changeCartStatus} />:null}}/>
 

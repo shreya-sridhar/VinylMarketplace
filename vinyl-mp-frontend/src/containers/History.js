@@ -11,12 +11,12 @@ export default class History extends React.Component {
             <table class="table table-image">
             <thead>
                 <tr>
-                <th scope="col">Order ID</th>
-                <th scope="col">Record</th>
-                <th scope="col">Album Name</th>
-                <th scope="col">Seller</th>
-                <th scope="col">Date</th>
-                <th scope="col">Price</th>
+                <th style={{width:'10%'}} scope="col">Order ID</th>
+                <th style={{width:'20%'}} scope="col">Record</th>
+                <th style={{width:'50%'}} scope="col">Album Name</th>
+                {/*<th style={{width:'25%'}} scope="col">Seller</th>*/}
+                {/*<th style={{width:'15%'}}scope="col">Date</th>*/}
+                <th style={{width:'20%'}} scope="col">Price</th>
                 </tr>
             </thead>
             <tbody>
