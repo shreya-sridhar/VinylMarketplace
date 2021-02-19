@@ -11,11 +11,9 @@ import History from "./History"
 import Cart from "./Cart"
 import UserHome from "../containers/UserHome"
 import Friends from "./ChatFriends"
-import AllRecords from "../pages/all-records/AllRecords"
-import { Route, Switch, Redirect,Link} from "react-router-dom"
+import AllRecords from "../pages/all-records/AllRecords";
+import {Route, Switch, Redirect, Link} from "react-router-dom";
 import {withRouter} from 'react-router'
-
-
 const API = "http://localhost:3001/"
 
 class MainContainer extends React.Component {
@@ -36,10 +34,8 @@ class MainContainer extends React.Component {
     redirect:false
   }
 
-componentDidMount() {
-  debugger
-
-const token = localStorage.token;
+  componentDidMount() {
+    const token = localStorage.token;
     if (token) {
       this.persistUser(token);
     }
@@ -158,14 +154,14 @@ renderRedirect = () => {
   }
 else
 {
-  
+
    alert(rec.name + ' has been added to your cart!');
    let user_find = this.state.orders.filter((order) => order.user.id === this.state.user.id  && order.status === 'pending')
    // change to single element later
    if (user_find.length === 0)
    {
-     
-     
+
+
      fetch("http://localhost:3001/orders", {
        method: "POST",
        headers: {
@@ -175,36 +171,35 @@ else
      })
        .then((resp) => resp.json())
        .then((data) => {
-         
+
          // let newOrders = this.state.order.concat(data)
          // this.setState({orders:newOrders})
          this.createOrderRecord(data);
        })
    }
    else
-   { 
-     
+   {
+
      this.createOrderRecord(rec);
    }}
  }
 
 
- createOrderRecord = (rec) => {
-   
-   let currOrder = this.state.orders.filter((order) => order.user.id === this.state.user.id  && order.status === 'pending')[0]
-   // change to single element later
-   fetch("http://localhost:3001/order_records", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify({order_id:currOrder.id, record_id:rec.id}),
-     })
-       .then((resp) => resp.json())
-       .then((data) => {
-         console.log(data)
-       })
- }
+    createOrderRecord = (rec) => {
+        let currOrder = this.state.orders.filter((order) => order.user.id === this.state.user.id && order.status === 'pending')[0]
+        // change to single element later
+        fetch("http://localhost:3001/order_records", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({order_id: currOrder.id, record_id: rec.id}),
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                console.log(data)
+            })
+    }
 
 
  handleAuthResponse = (data) => {
@@ -212,7 +207,7 @@ else
    {
     this.props.history.push("/signup");
    }
-   else 
+   else
    {
    if (data.user) {
      const { username, id} = data.user;
@@ -273,7 +268,7 @@ else
  };
 
  sendMessage = (e,state) => {
-  
+
   fetch("http://localhost:3002/messages", {
     method: "POST",
     headers: {
@@ -284,7 +279,7 @@ else
   })
     .then((resp) => resp.json())
     .then((data) => {
-      
+
       console.log(data)
     })
  }
@@ -322,12 +317,14 @@ else
    render(){ 
     return (
     <div>
-        <NavBar />
+        <NavBar user={this.state.user}
+                handleLogout={this.handleLogout}
+        />
         <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/messages" render={this.renderMessages} />
             <Route exact path="/records" component = {AllRecords} />
-         
+
             <Route path="/login" render={this.renderLoginPage} />
             <Route path="/signup" render={this.renderSignUpPage} />
             <Route path="/history" render={this.renderHistory} />
@@ -338,7 +335,7 @@ else
           }}
           />
 
-            
+
             <Route path="/records/:slug" render={(routerProps) => {
                         return <RecordPage record_id={routerProps.match.params.slug} records={this.state.records}
                                            handleClick={this.handleClick}

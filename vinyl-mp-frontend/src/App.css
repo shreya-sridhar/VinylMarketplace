@@ -1937,7 +1937,7 @@ a:hover {
     text-align: left;
 }
 
-                    
+
 
 .portlet {
     margin-bottom: 15px;
@@ -2110,18 +2110,25 @@ height:40px;
 
 .text-red {
     color: #e74c3c;
-}                
+}
 
 .container {
     padding: 2rem 0rem;
   }
-  
+
   h4 {
     margin: 2rem 0rem 1rem;
   }
-  
+
   .table-image {
     td, th {
       vertical-align: middle;
     }
   }
+
+#record-description {
+
+    height: 100px;
+    overflow: scroll;
+
+}
