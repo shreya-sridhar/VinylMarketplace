@@ -1,7 +1,7 @@
 import './Pagination.css'
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {withRouter} from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 import NotFound from "../NotFound";
 
 
@@ -15,7 +15,7 @@ class Pagination extends Component {
         if (page === null) {
             params.set('page', '2')
         } else {
-            params.set('page', parseInt(page)+1)
+            params.set('page', parseInt(page) + 1)
         }
         this.props.history.push('?' + params.toString())
     }
@@ -28,7 +28,7 @@ class Pagination extends Component {
         if (page === null || page <= 1) {
             this.props.history.push('/404NotFound')
         } else {
-            params.set('page', parseInt(page)-1)
+            params.set('page', parseInt(page) - 1)
             this.props.history.push('?' + params.toString())
         }
     }
@@ -37,7 +37,9 @@ class Pagination extends Component {
         return (
             <div className="d-flex flex-row container mt-3">
                 <div className="p-2 text-dark pt-3">
-                    <h4>All Records</h4>
+                    <Link to={'/records'}>
+                        <h4>All Records</h4>
+                    </Link>
                 </div>
                 <div className="ml-auto p-2">
                     <nav aria-label="Page navigation example">

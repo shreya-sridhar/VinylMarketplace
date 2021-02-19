@@ -11,9 +11,9 @@ const UserDropdown = (props) => {
             Hi, {props.user.username}
         </Dropdown.Toggle>
         <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Orders</Dropdown.Item>
+            <Dropdown.Item href="/history">Orders</Dropdown.Item>
+            <Dropdown.Item href="/profile">Profile</Dropdown.Item>
             <Dropdown.Item href="/friends">Friends</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Favorite</Dropdown.Item>
             <Dropdown.Item href="/" onClick={props.handleLogout}>Log Out</Dropdown.Item>
         </Dropdown.Menu>
     </Dropdown>

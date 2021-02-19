@@ -4,7 +4,6 @@ import SellerCard from '../components/seller/SellerCard.js'
 
 class Seller extends React.Component {
     render(){
-
        return(
  <div class="container py-5">
  <div class="row text-center text-white mb-5">

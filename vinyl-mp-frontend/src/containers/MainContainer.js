@@ -327,7 +327,7 @@ else
 
             <Route path="/login" render={this.renderLoginPage} />
             <Route path="/signup" render={this.renderSignUpPage} />
-            <Route path="/history" render={this.renderHistory} />
+            {/*<Route path="/history" render={this.renderHistory} />*/}
 
             <Route path="/users/:slug" render={(routerProps) =>{
             let user = this.state.users.find(user => user.id == routerProps.match.params.slug)

@@ -74,7 +74,7 @@ class Footer extends React.Component {
         <li><a href="http://webenlance.com">Contact</a></li>
         </ul>
        
-        <p className="text-center">Copyright @2017 | Designed With by <a href="#">Your Company Name</a></p>
+        <p className="text-center">Copyright @2021 | Designed With by <a href="#">Your Company Name</a></p>
         
         <ul className="social_footer_ul">
         <li><a href="http://webenlance.com"><i className="fab fa-facebook-f"></i></a></li>
