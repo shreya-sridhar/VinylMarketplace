@@ -5,8 +5,6 @@ import {Link} from "react-router-dom"
 class RecordComponent extends React.Component {
 
     render() {
-        console.log(this.props.record.cover)
-
         return (
             <div className=" col-lg-3 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2">
 

@@ -186,9 +186,6 @@ renderRedirect = () => {
         let currOrder = this.state.orders.filter((order) => order.user.id === this.state.user.id && order.status === 'in_cart')[0]
 
         // change to single element later
-        console.log('createOrderRecord')
-        console.log(currOrder)
-        console.log(rec)
         fetch("http://localhost:3001/order_records", {
             method: "POST",
             headers: {

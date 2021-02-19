@@ -29,7 +29,6 @@ class RecordPage extends React.Component {
         if (Object.keys(this.state.record).length === 0) {
             return <div/>
         }
-        console.log(this.state.record)
         return (
             <div className="whole">
                 <div className="container bootdey">
