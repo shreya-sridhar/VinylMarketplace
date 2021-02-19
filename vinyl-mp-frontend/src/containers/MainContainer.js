@@ -363,5 +363,3 @@ else
 
 export default withRouter(MainContainer);
 
-    
-
