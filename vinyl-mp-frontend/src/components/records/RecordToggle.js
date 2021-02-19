@@ -11,7 +11,6 @@ function RecordToggle(props) {
 
     const history = useHistory();
     const navigateTo = (user) => history.push(`/cart/${user.id}`);//eg.history.push('/login');
-
     return (
         <section class="panel">
             <div class="panel-body">
@@ -59,21 +58,16 @@ function RecordToggle(props) {
                                 </Link>
                             </span>
                         </div>
-                        <div class="m-bot15"><strong>Starting Price : </strong>
-                            <span
-                                class="amount-old">${parseInt(Math.min(props.sells.map(s => s.sell_price)) + 100)}</span>
-                            ${parseInt(Math.min(props.sells.map(s => s.sell_price)))}
-                            <span class="pro-price"></span>
-                        </div>
+                        <div class="m-bot15"><strong>Starting Price : </strong> <span
+                            class="amount-old">${parseInt(Math.min(props.sells.map(s => s.sell_price)) + 100)}</span>${parseInt(Math.min(props.sells.map(s => s.sell_price)))}<span
+                            class="pro-price"></span></div>
                         <div class="form-group">
                             <label>Quantity</label>
                             <div className="container">
                                 <div className="row row-cols-3">
                                     <div className="col"></div>
-                                    <div className="col"><input type="quantiy"
-                                                                placeholder="1"
-                                                                className="form-control quantity"/>
-                                    </div>
+                                    <div className="col"><input type="quantiy" placeholder="1"
+                                                                className="form-control quantity"></input></div>
                                     <div className="col"></div>
                                 </div>
                             </div>
@@ -82,8 +76,7 @@ function RecordToggle(props) {
                         <p>
 
                             <button onClick={() => navigateTo(props.user)} class="btn btn-round btn-danger"
-                                    type="button">
-                                <i class="fa fa-shopping-cart"></i> View Cart
+                                    type="button"><i class="fa fa-shopping-cart"></i> View Cart
                             </button>
                             &nbsp;&nbsp;
                             <button class="btn btn-round btn-danger" type="button"><i class="fas fa-eye"></i> View

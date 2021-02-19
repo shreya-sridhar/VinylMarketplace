@@ -10,7 +10,7 @@ export default class Favorites extends React.Component {
              <div class="container" style={{minHeight:"auto",paddingLeft:100,overflowY:"scroll",maxHeight:400}}>
        <div id="Favorites" class="tab-pane">
 					<ul class="ace-thumbnails">
-						{this.props.user.favorites.split(",").map(fav => <FavoriteContent fav={fav}/>)}
+						{JSON.parse(this.props.user.favorites).map(fav => <FavoriteContent fav={fav}/>)}
 					</ul>
 				</div>
                 </div>

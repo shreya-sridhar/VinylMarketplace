@@ -71,7 +71,7 @@ export default class UserHome extends React.Component {
                                             </a>
                                         </div>
                                         {this.props.page === 1 ? <Bio user={this.props.user}/> : this.props.page === 2 ?
-                                            <Friends user={this.props.user}/> : <Favorites user={this.props.user}/>}
+                                            <Friends user={this.props.user} users={this.props.users}/> : <Favorites user={this.props.user}/>}
                                     </div>
                                     <div class="space-20"></div>
 
@@ -83,11 +83,11 @@ export default class UserHome extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Carousel records={this.props.records} nums={this.props.records.length} content={this.props.content1}
+                <Carousel nums={this.props.records.length} content={this.props.content1} 
                           size={200} handleRightClick={this.props.handleRightClick}
                           handleLeftClick={this.props.handleLeftClick} pageTag={"user1"}
-                          user1Page={this.props.user1Page}/>
-                <Carousel records={this.props.records} nums={this.props.records.length} content={this.props.content2}
+                          user1Page={this.props.user1Page} records={this.props.records}/>
+                <Carousel records={this.props.sell_records.filter(r => r.user.id === this.props.user.id).map(r => r.record)}  nums={this.props.records.length} content={this.props.content2}
                           size={200} handleRightClick={this.props.handleRightClick}
                           handleLeftClick={this.props.handleLeftClick} pageTag={"user2"}
                           user2Page={this.props.user2Page}/>

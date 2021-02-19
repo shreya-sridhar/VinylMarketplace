@@ -5,6 +5,9 @@ import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom'
 import './assets/css/fontawesome.css'
+import { ActionCableProvider } from 'react-actioncable-provider';
+const channels = require.context('.', true, /_channel\.js$/)
+channels.keys().forEach(channels)
 
 ReactDOM.render(
   <BrowserRouter>
