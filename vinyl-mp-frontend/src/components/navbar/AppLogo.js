@@ -7,7 +7,7 @@ const AppLogo = () => {
     return (
         <div className="navbar-brand mb-0 text-light">
             <Link to='/' id='vinylLogo' >
-                <i className="fa fa-record-vinyl"></i> Vinyl Market Place
+                <i className="fa fa-record-vinyl"></i> Vinyl Store
             </Link>
         </div>
     )

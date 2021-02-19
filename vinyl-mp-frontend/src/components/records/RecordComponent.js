@@ -3,7 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Link} from "react-router-dom"
 
 class RecordComponent extends React.Component {
-
+    state={
+        name:"far fa-heart"
+    }
+    handleClassName = () => {
+        if (this.state.name === "far fa-heart")
+        {
+            this.setState({name:"fas fa-heart"})
+        }
+        else
+        {
+            this.setState({name:"far fa-heart"})
+        }
+    }
     render() {
         return (
             <div className=" col-lg-3 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2">
@@ -29,7 +41,9 @@ class RecordComponent extends React.Component {
                                     ${Math.round(this.props.record.price)}
                                 </div>
                             </div>
-                            <div className="btn"><i className="far fa-heart"></i></div>
+                            <div onClick={this.handleClassName} className="btn">
+                                <i style={{color:"red"}} className={this.state.name}/>
+                            </div>
                         </div>
                     </div>
                 </div>

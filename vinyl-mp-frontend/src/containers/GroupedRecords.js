@@ -8,7 +8,7 @@ const GroupedRecords = props => {
         return (<div/>)
     }
     return (
-        <div className="container mt-3">
+        <div className="container">
             <div className='container'>
                 <div className='row'>
                     <div className='col-md-5'>

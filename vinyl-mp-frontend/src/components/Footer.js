@@ -10,7 +10,7 @@ class Footer extends React.Component {
         <div className=" col-sm-4 col-md col-sm-4  col-12 col">
         <h5 className="headin5_amrc col_white_amrc pt2">About us</h5>
  
-        <p className="mb10">Vinyl Market Place is a one stop for shopping and selling records</p>
+        <p className="mb10">Vinyl Store is a one stop for shopping and selling records</p>
         <p><i className="fa fa-location-arrow"></i> Seattle, WA </p>
         <p><i className="fa fa-phone"></i>  425-123-4567  </p>
         <p><i className="fa fa fa-envelope"></i> info@vinyl.io  </p>
