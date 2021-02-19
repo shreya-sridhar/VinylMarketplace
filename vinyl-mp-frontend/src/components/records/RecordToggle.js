@@ -15,13 +15,21 @@ function RecordToggle(props) {
         <section class="panel">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        <RecordDescription
-                            record={props.record}
-                            cover={props.cover}
-                        />
-                        <h6 onClick={() => props.handleClick(props.record)}><a href="#">{props.cover}</a></h6>
+                    <div onClick={() => props.handleClick(props.record)} className="col-md-6">
+                        <h6><a href="#">{props.cover}</a></h6>
+                        {props.cover[0] ? <RecordDescription
+                                record={props.record}
+                                cover={props.cover}
+                            /> :
+                            <SongsList songs_list={props.record.songs_list}/>}
                     </div>
+                    {/*<div class="col-md-6">*/}
+                    {/*    <RecordDescription*/}
+                    {/*        record={props.record}*/}
+                    {/*        cover={props.cover}*/}
+                    {/*    />*/}
+                    {/*    <h6 onClick={() => props.handleClick(props.record)}><a href="#">{props.cover}</a></h6>*/}
+                    {/*</div>*/}
                     <div className="col-md-6">
                         <br></br>
                         <h2 class="p">
@@ -58,9 +66,11 @@ function RecordToggle(props) {
                                 </Link>
                             </span>
                         </div>
-                        <div class="m-bot15"><strong>Starting Price : </strong> <span
-                            class="amount-old">${parseInt(Math.min(props.sells.map(s => s.sell_price)) + 100)}</span>${parseInt(Math.min(props.sells.map(s => s.sell_price)))}<span
-                            class="pro-price"></span></div>
+                        <div class="m-bot15">
+                            <strong>Starting Price : </strong>
+                            <span class="amount-old">$ {parseInt(props.record.price)}</span>
+                            $ {Math.min.apply(null, props.sells.map(s => s.sell_price))}
+                            <span class="pro-price"></span></div>
                         <div class="form-group">
                             <label>Quantity</label>
                             <div className="container">

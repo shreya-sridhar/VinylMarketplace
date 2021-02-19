@@ -4,6 +4,7 @@ import Carousel from './Carousel.js'
 import Friends from '../components/Friends.js'
 import Favorites from '../containers/Favorites.js'
 import Bio from '../containers/Bio.js'
+const profilePic = 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'
 
 export default class UserHome extends React.Component {
 
@@ -53,8 +54,8 @@ export default class UserHome extends React.Component {
                                         <div class="col-xs-12 col-sm-3 center">
 							<span class="profile-picture">
 								<img class="editable img-responsive" alt=" Avatar" id="avatar2"
-                                     src="http://sunfieldfarm.org/wp-content/uploads/2014/02/profile-placeholder.png"
-                                     style={{maxWidth: 200}}></img>
+                                     src={profilePic}
+                                     style={{maxWidth: 130}}></img>
 							</span>
 
                                             <div class="space space-4"></div>

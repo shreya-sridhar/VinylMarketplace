@@ -18,9 +18,9 @@ class SearchBox extends React.Component {
                     <input className="form-control me-2"
                            type="search"
                            name="search"
-                           placeholder="Search"></input>
+                           placeholder="Search"/>
                     <button className="btn btn-dark" type="submit">
-                        <i className="fas fa-search"></i>
+                        <i className="fas fa-search"/>
                     </button>
                 </form>
             </div>

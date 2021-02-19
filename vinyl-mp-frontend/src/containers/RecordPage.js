@@ -32,8 +32,7 @@ class RecordPage extends React.Component {
         return (
             <div className="whole">
                 <div className="container bootdey">
-                    <br></br><br></br><br></br><br></br>
-                    <div className="col-md-12">
+                    <div className="col-md-12 mt-5">
                         <RecordToggle
                             user={this.props.user}
                             deleteRecord={this.props.deleteRecord}

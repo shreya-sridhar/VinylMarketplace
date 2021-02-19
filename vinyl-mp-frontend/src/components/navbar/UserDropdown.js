@@ -12,7 +12,7 @@ const UserDropdown = (props) => {
         </Dropdown.Toggle>
         <Dropdown.Menu>
             <Dropdown.Item href="/history">Orders</Dropdown.Item>
-            <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+            <Dropdown.Item><Link to={`/users/${props.user.id}`}>Profile</Link></Dropdown.Item>
             <Dropdown.Item href="/friends">Friends</Dropdown.Item>
             <Dropdown.Item href="/" onClick={props.handleLogout}>Log Out</Dropdown.Item>
         </Dropdown.Menu>
