@@ -46,17 +46,18 @@ class MainContainer extends React.Component {
     .then(res => res.json())
     .then(data2 => fetch("http://localhost:3001/sell_records")
     .then(res => res.json())
-    .then(data5 => fetch("http://localhost:3001/order_records")
+    .then(data3 => fetch("http://localhost:3001/order_records")
     .then(res => res.json())
-    .then(data3 => fetch("http://localhost:3001/orders")
+    .then(data4 => fetch("http://localhost:3001/orders")
     .then(res => res.json())
-    .then(data4 => {
+    .then(data5 => {
       this.setState(
-        {sell_records:data3,
-        records:data2,
+        {
         users:data1,
-        orders:data4,
-        order_records:data5
+        records:data2,
+        sell_records:data3,
+        order_records:data4,
+        orders:data5
       })
       }
       )
@@ -148,19 +149,20 @@ renderRedirect = () => {
 }
 
  addToCart = (rec) => {
+   debugger
   if (!localStorage.token)
   {
+    debugger
    alert('Please login before adding to cart');
   }
 else
 {
-
+  debugger
    alert(rec.name + ' has been added to your cart!');
    let user_find = this.state.orders.filter((order) => order.user.id === this.state.user.id  && order.status === 'pending')
    // change to single element later
    if (user_find.length === 0)
    {
-
 
      fetch("http://localhost:3001/orders", {
        method: "POST",
@@ -186,6 +188,7 @@ else
 
 
     createOrderRecord = (rec) => {
+      debugger
         let currOrder = this.state.orders.filter((order) => order.user.id === this.state.user.id && order.status === 'pending')[0]
         // change to single element later
         fetch("http://localhost:3001/order_records", {
@@ -348,8 +351,11 @@ else
             {/* {!this.state.user.id && <Redirect to="/login" />} */}
 
             <Route path="/cart/:slug" render={(routerProps) =>{
+              debugger
             let user = this.state.users.find(u => u.id == routerProps.match.params.slug)
             return user? <Cart user={user} deleteRecord={this.deleteRecord} changeCartStatus={this.changeCartStatus} />:null}}/>
+
+          
             
             <Route exact path="/friends" component={Friends}/>
             <Route component={NotFound} />
