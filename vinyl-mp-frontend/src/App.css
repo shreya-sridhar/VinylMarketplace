@@ -1746,10 +1746,10 @@ body .no-padding {
 
 .footer {
   position:relative;
-  bottom:-450px;
+  bottom:-350px;
   width:100%;
     /* Height of the footer */
-  height:450px;
+  height:350px;
 }
 
 

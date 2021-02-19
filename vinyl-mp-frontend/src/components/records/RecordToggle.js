@@ -11,6 +11,9 @@ function RecordToggle(props) {
 
     const history = useHistory();
     const navigateTo = (user) => history.push(`/cart/${user.id}`);//eg.history.push('/login');
+    let promoPrice = Object.keys(props.sells).length === 0 ?
+        parseInt(props.record.price) : Math.min.apply(null, props.sells.map(s => s.sell_price))
+
     return (
         <section class="panel">
             <div class="panel-body">
@@ -66,11 +69,27 @@ function RecordToggle(props) {
                                 </Link>
                             </span>
                         </div>
+                        <div className="m-bot15">
+                            {
+                                (parseInt(props.record.price) <= Math.min.apply(null, props.sells.map(s => s.sell_price))
+                                        ?
+                                        <div>
+                                            <strong>Price : </strong>
+                                            <span className="pro-price">$ {parseInt(props.record.price)}</span>
+                                        </div>
+                                        :
+                                        <div>
+                                            <strong>Starting Price : </strong>
+                                            <span className="amount-old">$ {parseInt(props.record.price)}</span>
+                                            <span className="pro-price">$ {promoPrice}</span>
+                                        </div>
+                                )}
+                        </div>
+
+
                         <div class="m-bot15">
-                            <strong>Starting Price : </strong>
-                            <span class="amount-old">$ {parseInt(props.record.price)}</span>
-                            $ {Math.min.apply(null, props.sells.map(s => s.sell_price))}
-                            <span class="pro-price"></span></div>
+
+                        </div>
                         <div class="form-group">
                             <label>Quantity</label>
                             <div className="container">
