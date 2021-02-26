@@ -26,7 +26,7 @@ class Pagination extends Component {
         const page = params.get('page')
 
         if (page === null || page <= 1) {
-            this.props.history.push('/404NotFound')
+            this.props.history.push('/records')
         } else {
             params.set('page', parseInt(page) - 1)
             this.props.history.push('?' + params.toString())

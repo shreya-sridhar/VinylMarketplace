@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+const profilePic = 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'
 export default class FriendCard extends React.Component {
 
     render(){
@@ -8,7 +8,7 @@ export default class FriendCard extends React.Component {
             <div class="col-md">
                     <div class="user">
                         <a href="#">
-                            <img src="https://christopherscottedwards.com/wp-content/uploads/2018/07/Generic-Profile.jpg" alt="Bob Doe's avatar" width="200"></img>
+                            <img src={profilePic} alt="avatar" width="130"></img>
                         </a>
                     </div>
 

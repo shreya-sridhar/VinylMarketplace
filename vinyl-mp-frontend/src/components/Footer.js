@@ -11,9 +11,9 @@ class Footer extends React.Component {
         <h5 className="headin5_amrc col_white_amrc pt2">About us</h5>
  
         <p className="mb10">Vinyl Store is a one stop for shopping and selling records</p>
-        <p><i className="fa fa-location-arrow"></i> Seattle, WA </p>
-        <p><i className="fa fa-phone"></i>  425-123-4567  </p>
-        <p><i className="fa fa fa-envelope"></i> info@vinyl.io  </p>
+        <p><i className="fa fa-location-arrow"/> Seattle, WA </p>
+        <p><i className="fa fa-phone"/>  425-123-4567  </p>
+        <p><i className="fa fa fa-envelope"/> info@vinyl.io  </p>
         
         
         </div>
@@ -36,7 +36,7 @@ class Footer extends React.Component {
         <h5 className="headin5_amrc col_white_amrc pt2">Alena Trushnikova</h5>
        
         <ul className="footer_ul_amrc">
-            <li><a href="https://www.linkedin.com/in/alenatrushnikova/"> <i className="fab fa-linkedin"></i> LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/alenatrushnikova/"> <i className="fab fa-linkedin"/> LinkedIn</a></li>
             <li><a href="https://alenatrushnikova.medium.com/"> <i className="fab fa-medium"/> Medium</a></li>
             <li><a href="https://github.com/AlenaTrushnikova"><i className="fab fa-github-square"/> GitHub</a></li>
         </ul>
@@ -62,20 +62,9 @@ class Footer extends React.Component {
         <ul className="foote_bottom_ul_amrc">
         <li><a href="/">Home</a></li>
         <li><a href="/records">Records</a></li>
-        {/*<li><a href="http://webenlance.com">Cart</a></li>*/}
-        {/*<li><a href="http://webenlance.com">Pricing</a></li>*/}
-        {/*<li><a href="http://webenlance.com">Blog</a></li>*/}
-        {/*<li><a href="http://webenlance.com">Contact</a></li>*/}
         </ul>
        
         <p className="text-center">Copyright 2021</p>
-        
-        {/*<ul className="social_footer_ul">*/}
-        {/*<li><a href="http://webenlance.com"><i className="fab fa-facebook-f"/></a></li>*/}
-        {/*<li><a href="http://webenlance.com"><i className="fab fa-twitter"/></a></li>*/}
-        {/*<li><a href="http://webenlance.com"><i className="fab fa-linkedin"/></a></li>*/}
-        {/*<li><a href="http://webenlance.com"><i className="fab fa-instagram"/></a></li>*/}
-        {/*</ul>*/}
 
         </div>
         
