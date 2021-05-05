@@ -4,7 +4,6 @@ import HistoryCard from '../components/HistoryCard.js'
 
 export default class History extends React.Component {
    render(){
-       debugger
        return(<div class="container mt-5">
        <h2>Your Order History</h2>
        <br></br>
