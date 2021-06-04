@@ -9,11 +9,22 @@ Technologies: React, Ruby, Rails, Websocket , Javascript, Postgresql, Rest API i
 ##### Visit Vinyl MarketPlace @ 
 ##### Check out a short video demo @ 
 
+###### Vinyl Marketplace Homepage
 <img src="https://user-images.githubusercontent.com/19844780/120867421-c0534f80-c546-11eb-9df2-4e6fca807783.PNG" width="350">
+
+###### Top Records Homepage
 <img src="https://user-images.githubusercontent.com/19844780/120867432-c6493080-c546-11eb-8006-cbc5ed244e37.PNG" width="350">
+
+###### Records Search & Pagination Feature (search & sort functionality by record, album & artist)
 <img src="https://user-images.githubusercontent.com/19844780/120867439-c9442100-c546-11eb-8731-bb86287165ec.PNG" width="350">
+
+###### Individual Record Page (w seller details & recommendations)
 <img src="https://user-images.githubusercontent.com/19844780/120867446-cb0de480-c546-11eb-884e-d03066d44f71.PNG" width="350">
+
+###### User Profile Page 
 <img src="https://user-images.githubusercontent.com/19844780/120867450-cd703e80-c546-11eb-96c8-bf7f6e7c59b6.PNG" width="350">
+
+###### View Cart Page
 <img src="https://user-images.githubusercontent.com/19844780/120867459-d103c580-c546-11eb-9d2e-5851c2dd10d4.PNG" width="350">
 
 ⭐ Contact 👤 Shreya Sridhar - Github: @shreya-sridhar, @AlenaTrushnikova
