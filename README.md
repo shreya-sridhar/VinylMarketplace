@@ -5,7 +5,7 @@
 ![vinyl5](https://user-images.githubusercontent.com/19844780/120867450-cd703e80-c546-11eb-96c8-bf7f6e7c59b6.PNG| width=100)
 ![snip6](https://user-images.githubusercontent.com/19844780/120867459-d103c580-c546-11eb-9d2e-5851c2dd10d4.PNG| width=100)
 
-<img src="https://user-images.githubusercontent.com/19844780/120867421-c0534f80-c546-11eb-9df2-4e6fca807783.PNG" width="200">
+<img src="https://user-images.githubusercontent.com/19844780/120867421-c0534f80-c546-11eb-9df2-4e6fca807783.PNG" width="350">
 
 ## Vinyl MarketPlace Application (React - Rail)
 
