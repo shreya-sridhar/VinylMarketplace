@@ -6,6 +6,9 @@ Includes a pagination feature to reduce page load times
 Chat application built using web sockets/action cable
 Technologies: React, Ruby, Rails, Websocket , Javascript, Postgresql, Rest API integration, JWT Authentication
 
+##### Visit Vinyl MarketPlace @ 
+##### Check out a short video demo @ 
+
 
 ⭐ Contact 👤 Shreya Sridhar - Github: @shreya-sridhar, @AlenaTrushnikova
 
