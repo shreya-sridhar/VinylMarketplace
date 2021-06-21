@@ -1,4 +1,4 @@
-## Vinyl MarketPlace Application (React - Rail)
+## Vinyl MarketPlace Application (React - Rails)
 
 Buy and Sell market place for Vinyl CDs/cassettes/records, allowing users to discover their music interests and potential vinyl cd sellers. Built with the ability to chat with buyers and sellers, deployed on Azure.
 
@@ -26,6 +26,9 @@ Technologies: React, Ruby, Rails, Websocket , Javascript, Postgresql, Rest API i
 
 ###### View Cart Page
 <img src="https://user-images.githubusercontent.com/19844780/120867459-d103c580-c546-11eb-9d2e-5851c2dd10d4.PNG" width="350">
+
+Contributions :
+Shreya Sridhar - 
 
 ⭐ Contact 👤 Shreya Sridhar - Github: @shreya-sridhar, @AlenaTrushnikova
 
